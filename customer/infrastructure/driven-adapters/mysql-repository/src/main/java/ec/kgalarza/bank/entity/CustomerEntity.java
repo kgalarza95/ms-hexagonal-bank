@@ -15,6 +15,13 @@ public class CustomerEntity extends PersonEntity {
     public CustomerEntity() {
     }
 
+    public CustomerEntity(String name, String gender, Integer age, String identification, String address, String phone, Long customerId, String password, boolean status) {
+        super(name, gender, age, identification, address, phone);
+        this.customerId = customerId;
+        this.password = password;
+        this.status = status;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

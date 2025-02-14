@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FindCustomerUseCase {
 
-    CustomerRepositoryGateway customerRepositoryGateway;
+    private final CustomerRepositoryGateway customerRepositoryGateway;
 
     public FindCustomerUseCase(CustomerRepositoryGateway customerRepositoryGateway) {
         this.customerRepositoryGateway = customerRepositoryGateway;

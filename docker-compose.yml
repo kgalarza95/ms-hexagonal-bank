@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  account-service:
+    build:
+      context: ./account/application/app-service
+    container_name: account-service
+    ports:
+      - "8081:8081"
+    networks:
+      - bank-network
+
+  customer-service:
+    build:
+      context: ./customer/application/app-service
+    container_name: customer-service
+    ports:
+      - "8082:8082"
+    networks:
+      - bank-network
+
+networks:
+  bank-network:
