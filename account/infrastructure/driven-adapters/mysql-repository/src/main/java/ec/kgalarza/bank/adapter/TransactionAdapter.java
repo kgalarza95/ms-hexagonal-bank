@@ -1,12 +1,15 @@
 package ec.kgalarza.bank.adapter;
 
+import com.kgalarza.bank.entity.AccountStatementReport;
 import com.kgalarza.bank.entity.Transaction;
 import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
+import ec.kgalarza.bank.mapper.ReportRepoMapper;
 import ec.kgalarza.bank.mapper.TransactionRepoMapper;
 import ec.kgalarza.bank.model.entity.TransactionEntity;
 import ec.kgalarza.bank.repository.ITransactionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,6 +39,30 @@ public class TransactionAdapter implements TransactionRepositoryGateway {
         return iTransactionRepository.findAll()
                 .stream()
                 .map(TransactionRepoMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public List<AccountStatementReport> getAccountStatementReport(LocalDateTime startDate, LocalDateTime endDate) {
+        return iTransactionRepository.getAccountStatementReport(startDate, endDate)
+                .stream()
+                .map(ReportRepoMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<AccountStatementReport> getAllAccountStatements() {
+        return iTransactionRepository.getAllAccountStatements()
+                .stream()
+                .map(ReportRepoMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<AccountStatementReport> getAccountStatementReportByUser(LocalDateTime startDate, LocalDateTime endDate, Long userId) {
+        return iTransactionRepository.getAccountStatementReportByUser(startDate, endDate, userId)
+                .stream()
+                .map(ReportRepoMapper::toDomain)
                 .toList();
     }
 }

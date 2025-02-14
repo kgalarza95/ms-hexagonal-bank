@@ -5,7 +5,6 @@ import com.kgalarza.bank.usecase.transaction.FindTransactionUseCase;
 import com.kgalarza.bank.usecase.transaction.SaveTransactionUseCase;
 import ec.kgalarza.bank.dto.TransactionInDTO;
 import ec.kgalarza.bank.dto.TransactionOutDTO;
-import ec.kgalarza.bank.exception.ResourceNotFoundException;
 import ec.kgalarza.bank.mapper.TransactionMapper;
 import org.springframework.stereotype.Component;
 
