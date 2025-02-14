@@ -10,6 +10,7 @@ public class Transaction {
     private double transactionAmount;
     private double availableBalance;
     private String transactionDescription;
+    private Long accountId;
     private Account account;
 
     public Transaction() {
@@ -69,5 +70,13 @@ public class Transaction {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

@@ -1,6 +1,7 @@
 package ec.kgalarza.bank.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -50,5 +51,31 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> globalExceptionHandler(Exception ex) {
+        String mensajeUsuario = "Lo sentimos, ha ocurrido un error inesperado. Por favor, intenta nuevamente más tarde.";
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.put("message", mensajeUsuario);
+        response.put("error", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, Object>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String mensajeUsuario = "Ya existe un registro con los mismos datos. Verifica la información e intenta nuevamente.";
+
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.CONFLICT.value());
+        response.put("message", mensajeUsuario);
+        response.put("error", ex.getRootCause() != null ? ex.getRootCause().getMessage() : ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
 
 }

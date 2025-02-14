@@ -3,13 +3,13 @@ package ec.kgalarza.bank.dto;
 import java.time.LocalDateTime;
 
 public class TransactionOutDTO {
+
     private Long id;
     private LocalDateTime transactionDate;
     private double initialBalance;
     private double transactionAmount;
     private double availableBalance;
     private String transactionDescription;
-    private Long accountId;
 
     public TransactionOutDTO() {
     }
@@ -62,11 +62,4 @@ public class TransactionOutDTO {
         this.transactionDescription = transactionDescription;
     }
 
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
 }
