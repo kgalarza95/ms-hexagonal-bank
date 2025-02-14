@@ -1,6 +1,7 @@
 package ec.kgalarza.bank.dto;
 
 public class AccountInDTO {
+
     private String accountNumber;
     private String accountType;
     private double onlineBalance;

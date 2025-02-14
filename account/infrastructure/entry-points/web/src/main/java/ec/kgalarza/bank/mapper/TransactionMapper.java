@@ -13,7 +13,7 @@ public class TransactionMapper {
         transaction.setTransactionAmount(dto.getTransactionAmount());
         transaction.setAvailableBalance(dto.getAvailableBalance());
         transaction.setTransactionDescription(dto.getTransactionDescription());
-        transaction.setAccountId(dto.getAccountId());
+        //transaction.setAccountId(dto.getAccountId());
 
         return transaction;
     }
@@ -28,7 +28,7 @@ public class TransactionMapper {
         dto.setTransactionAmount(transaction.getTransactionAmount());
         dto.setAvailableBalance(transaction.getAvailableBalance());
         dto.setTransactionDescription(transaction.getTransactionDescription());
-        dto.setAccountId(transaction.getAccountId());
+        //dto.setAccountId(transaction.getAccountId());
 
         return dto;
     }

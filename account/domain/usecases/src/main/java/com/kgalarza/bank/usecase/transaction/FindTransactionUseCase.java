@@ -7,6 +7,7 @@ import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 
 import java.util.List;
 
+
 public class FindTransactionUseCase {
 
     TransactionRepositoryGateway transactionRepositoryGateway;

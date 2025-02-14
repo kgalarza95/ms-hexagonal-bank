@@ -5,9 +5,11 @@ import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 import ec.kgalarza.bank.mapper.TransactionRepoMapper;
 import ec.kgalarza.bank.model.entity.TransactionEntity;
 import ec.kgalarza.bank.repository.ITransactionRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TransactionAdapter implements TransactionRepositoryGateway {
 
     ITransactionRepository iTransactionRepository;

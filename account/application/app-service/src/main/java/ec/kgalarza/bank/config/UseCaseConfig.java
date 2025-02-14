@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 
 @Configuration
-@ComponentScan( basePackages = "ec.kgalarza.bank",
+@ComponentScan( basePackages = "com.kgalarza.bank",
 includeFilters = {
         @ComponentScan.Filter(type= FilterType.REGEX, pattern = "^.+UseCase$")
 })

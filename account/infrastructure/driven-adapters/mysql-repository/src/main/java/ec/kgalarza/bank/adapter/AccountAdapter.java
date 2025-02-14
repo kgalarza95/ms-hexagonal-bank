@@ -5,9 +5,11 @@ import com.kgalarza.bank.gateway.AccountRepositoryGateway;
 import ec.kgalarza.bank.mapper.AccountRepoMapper;
 import ec.kgalarza.bank.model.entity.AccountEntity;
 import ec.kgalarza.bank.repository.IAccountRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AccountAdapter implements AccountRepositoryGateway {
 
     IAccountRepository iAccountRepository;

@@ -1,12 +1,11 @@
 package ec.kgalarza.bank.model.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 @Entity
-@Table(name = "cuentas")
+@Table(name = "account")
 public class AccountEntity {
 
     @Id
