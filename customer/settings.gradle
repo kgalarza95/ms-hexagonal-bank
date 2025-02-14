@@ -1,0 +1,22 @@
+rootProject.name = 'customer'
+
+include ':model'
+findProject(':model').projectDir = file('./domain/model')
+
+include ':usecases'
+findProject(':usecases').projectDir = file('./domain/usecases')
+
+include ':app-service'
+findProject(':app-service').projectDir = file('./application/app-service')
+
+include ':app-service'
+findProject(':app-service').projectDir = file('./application/app-service')
+
+include ':mysql-repository'
+findProject(':mysql-repository').projectDir = file('./infrastructure/driven-adapters/mysql-repository')
+
+include 'rabbit-info-bus'
+findProject(':rabbit-info-bus').projectDir = file('./infrastructure/driven-adapters/rabbit-info-bus')
+
+include ':web'
+findProject(':web').projectDir = file('./infrastructure/entry-points/web')
