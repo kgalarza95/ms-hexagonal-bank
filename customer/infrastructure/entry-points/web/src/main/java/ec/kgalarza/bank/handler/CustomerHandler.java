@@ -33,15 +33,9 @@ public class CustomerHandler {
         return customer != null ? CustomerMapper.toOutDTO(customer) : null;
     }
 
-
-
     public CustomerOutDTO save(CustomerInDTO customerInDTO) {
         Customer customer = CustomerMapper.toDomain(customerInDTO);
         return CustomerMapper.toOutDTO(saveCustomerUseCase.save(customer));
     }
-/*
-    public CustomerOutDTO save(CustomerInDTO customerInDTO) {
-        Customer customer = CustomerMapper.toDomain(customerInDTO);
-        return CustomerMapper.toOutDTO(saveCustomerUseCase.save(customer));
-    }*/
+
 }

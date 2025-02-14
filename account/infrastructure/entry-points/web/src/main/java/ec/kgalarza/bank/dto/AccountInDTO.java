@@ -1,26 +1,13 @@
-package com.kgalarza.bank.entity;
+package ec.kgalarza.bank.dto;
 
-import java.util.List;
-
-public class Account {
-
-    private Long id;
+public class AccountInDTO {
     private String accountNumber;
     private String accountType;
     private double onlineBalance;
     private boolean status;
     private Long customerId;
-    private List<Transaction> transactions;
 
-    public Account() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public AccountInDTO() {
     }
 
     public String getAccountNumber() {
@@ -61,13 +48,5 @@ public class Account {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
     }
 }

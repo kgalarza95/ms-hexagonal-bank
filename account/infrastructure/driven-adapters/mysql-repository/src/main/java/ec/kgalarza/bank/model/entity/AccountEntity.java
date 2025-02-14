@@ -1,18 +1,28 @@
-package com.kgalarza.bank.entity;
+package ec.kgalarza.bank.model.entity;
+
+import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-public class Account {
+@Entity
+@Table(name = "cuentas")
+public class AccountEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String accountNumber;
+    @Column(nullable = false)
     private String accountType;
     private double onlineBalance;
     private boolean status;
     private Long customerId;
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "account")
+    private List<TransactionEntity> transactions;
 
-    public Account() {
+    public AccountEntity() {
     }
 
     public Long getId() {
@@ -63,11 +73,11 @@ public class Account {
         this.customerId = customerId;
     }
 
-    public List<Transaction> getTransactions() {
+    public List<TransactionEntity> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
+    public void setTransactions(List<TransactionEntity> transactions) {
         this.transactions = transactions;
     }
 }

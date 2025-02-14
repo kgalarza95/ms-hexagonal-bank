@@ -1,18 +1,37 @@
-package com.kgalarza.bank.entity;
+package ec.kgalarza.bank.model.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import org.springframework.data.annotation.LastModifiedDate;
 
-public class Transaction {
 
+@Entity
+@Table(name = "transaction")
+public class TransactionEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @LastModifiedDate
     private LocalDateTime transactionDate;
+
     private double initialBalance;
     private double transactionAmount;
     private double availableBalance;
     private String transactionDescription;
-    private Account account;
 
-    public Transaction() {
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private AccountEntity account;
+
+    public TransactionEntity() {
     }
 
     public Long getId() {
@@ -63,11 +82,11 @@ public class Transaction {
         this.transactionDescription = transactionDescription;
     }
 
-    public Account getAccount() {
+    public AccountEntity getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(AccountEntity account) {
         this.account = account;
     }
 }

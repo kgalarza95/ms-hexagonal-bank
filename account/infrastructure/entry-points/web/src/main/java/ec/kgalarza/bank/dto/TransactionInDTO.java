@@ -1,34 +1,14 @@
-package com.kgalarza.bank.entity;
+package ec.kgalarza.bank.dto;
 
-import java.time.LocalDateTime;
+public class TransactionInDTO {
 
-public class Transaction {
-
-    private Long id;
-    private LocalDateTime transactionDate;
     private double initialBalance;
     private double transactionAmount;
     private double availableBalance;
     private String transactionDescription;
-    private Account account;
+    private Long accountId;
 
-    public Transaction() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
+    public TransactionInDTO() {
     }
 
     public double getInitialBalance() {
@@ -63,11 +43,11 @@ public class Transaction {
         this.transactionDescription = transactionDescription;
     }
 
-    public Account getAccount() {
-        return account;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }
