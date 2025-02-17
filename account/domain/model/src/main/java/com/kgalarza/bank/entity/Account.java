@@ -15,6 +15,25 @@ public class Account {
     public Account() {
     }
 
+    public Account(Long id, String accountNumber, String accountType, double onlineBalance, boolean status, Long customerId) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.onlineBalance = onlineBalance;
+        this.status = status;
+        this.customerId = customerId;
+    }
+
+    public Account(Long id, String accountNumber, String accountType, double onlineBalance, boolean status, Long customerId, List<Transaction> transactions) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.onlineBalance = onlineBalance;
+        this.status = status;
+        this.customerId = customerId;
+        this.transactions = transactions;
+    }
+
     public Long getId() {
         return id;
     }

@@ -7,6 +7,7 @@ import ec.kgalarza.bank.dto.TransactionInDTO;
 import ec.kgalarza.bank.dto.TransactionOutDTO;
 import ec.kgalarza.bank.mapper.TransactionMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,7 @@ public class TransactionHandler {
         return transaction != null ? TransactionMapper.toOutDTO(transaction) : null;
     }
 
+    @Transactional
     public TransactionOutDTO save(TransactionInDTO transactionInDTO) {
         Transaction transaction = TransactionMapper.toDomain(transactionInDTO);
         return TransactionMapper.toOutDTO(saveTransactionUseCase.save(transaction));
