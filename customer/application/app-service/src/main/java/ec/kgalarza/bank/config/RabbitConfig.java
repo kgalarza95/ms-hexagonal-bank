@@ -1,31 +1,29 @@
 package ec.kgalarza.bank.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import ec.kgalarza.bank.LogBusMessageListenerGategway;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+
 @Configuration
 public class RabbitConfig {
 
-    @Value("${amqp.exchange.default}")
+    @Value("${amqp.exchange.log}")
     public String EXCHANGE_NAME;
-    @Value("${amqp.queue.default}")
+    @Value("${amqp.queue.log}")
     public String QUEUE_NAME;
-    @Value("${amqp.routing.key.default}")
+    @Value("${amqp.routing.key.log}")
     public String ROUTING_KEY;
-
-    @Value("${amqp.exchange.customer}")
-    private String EXCHANGE_CUSTOMER;
-    @Value("${amqp.queue.customer}")
-    private String QUEUE_CUSTOMER;
-    @Value("${amqp.routing.key.customer}")
-    private String ROUTINGKEY_CUSTOMER;
-
 
     @Bean(name = "defaultExchange")
     public DirectExchange defaultExchange() {
@@ -42,19 +40,30 @@ public class RabbitConfig {
         return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
 
-    @Bean(name = "customerExchange")
-    public DirectExchange customerExchange() {
-        return new DirectExchange(EXCHANGE_CUSTOMER);
-    }
-
-    @Bean(name = "customerQueue")
-    public Queue customerQueue() {
-        return new Queue(QUEUE_CUSTOMER, true);
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+        return rabbitTemplate;
     }
 
     @Bean
-    public Binding customerBinding(@Qualifier("customerQueue") Queue queue, @Qualifier("customerExchange") DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY_CUSTOMER);
+    public MessageConverter messageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 
+    @Bean
+    public AmqpTemplate rabbitTemplateBean(ConnectionFactory connectionFactory) {
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(messageConverter());
+        return rabbitTemplate;
+    }
+
+//    @Bean
+//    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
+//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+//        container.setConnectionFactory(connectionFactory);
+//        container.setMessageListener(new MessageListenerAdapter(new LogBusMessageListenerGategway(), messageConverter()));
+//        return container;
+//    }
 }

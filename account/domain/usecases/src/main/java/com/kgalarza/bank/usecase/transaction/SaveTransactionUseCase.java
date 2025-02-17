@@ -1,10 +1,12 @@
 package com.kgalarza.bank.usecase.transaction;
 
 import com.kgalarza.bank.entity.Account;
+import com.kgalarza.bank.entity.Log;
 import com.kgalarza.bank.entity.Transaction;
 import com.kgalarza.bank.exception.GeneralAccountValidationException;
 import com.kgalarza.bank.exception.ResourceNotFoundException;
 import com.kgalarza.bank.gateway.AccountRepositoryGateway;
+import com.kgalarza.bank.gateway.ILogBusMessageGateway;
 import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 import com.kgalarza.bank.usecase.account.FindAccountUseCase;
 import com.kgalarza.bank.usecase.account.SaveAccountUseCase;
@@ -16,11 +18,13 @@ public class SaveTransactionUseCase {
     TransactionRepositoryGateway transactionRepositoryGateway;
     FindAccountUseCase findAccountUseCase;
     SaveAccountUseCase saveAccountUseCase;
+    ILogBusMessageGateway iLogBusMessageGateway;
 
-    public SaveTransactionUseCase(TransactionRepositoryGateway transactionRepositoryGateway, FindAccountUseCase findAccountUseCase, SaveAccountUseCase saveAccountUseCase) {
+    public SaveTransactionUseCase(TransactionRepositoryGateway transactionRepositoryGateway, FindAccountUseCase findAccountUseCase, SaveAccountUseCase saveAccountUseCase, ILogBusMessageGateway iLogBusMessageGateway) {
         this.transactionRepositoryGateway = transactionRepositoryGateway;
         this.findAccountUseCase = findAccountUseCase;
         this.saveAccountUseCase = saveAccountUseCase;
+        this.iLogBusMessageGateway = iLogBusMessageGateway;
     }
 
     public Transaction save(Transaction entidad) {
@@ -48,6 +52,7 @@ public class SaveTransactionUseCase {
         account.setOnlineBalance(finalBalance);
         saveAccountUseCase.save(account);
 
+        iLogBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
         return savedTransaction;
     }
 

@@ -3,6 +3,7 @@ dependencies {
 
     implementation project (':usecases')
     implementation project (':mysql-repository')
+    implementation project (':rabbit-listener-bus')
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'

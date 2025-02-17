@@ -1,7 +1,5 @@
 dependencies {
 
-
-
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
@@ -9,5 +7,7 @@ dependencies {
 
     implementation project (':usecases')
     implementation project (':mysql-repository')
+    implementation project (':rabbit-info-bus')
     implementation project (':web')
+
 }

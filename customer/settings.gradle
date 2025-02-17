@@ -12,8 +12,9 @@ findProject(':app-service').projectDir = file('./application/app-service')
 include ':mysql-repository'
 findProject(':mysql-repository').projectDir = file('./infrastructure/driven-adapters/mysql-repository')
 
-include 'rabbit-info-bus'
-findProject(':rabbit-info-bus').projectDir = file('./infrastructure/driven-adapters/rabbit-info-bus')
-
 include ':web'
 findProject(':web').projectDir = file('./infrastructure/entry-points/web')
+
+include ':rabbit-listener-bus'
+findProject(':rabbit-listener-bus').projectDir = file('./infrastructure/entry-points/rabbit-listener-bus')
+
