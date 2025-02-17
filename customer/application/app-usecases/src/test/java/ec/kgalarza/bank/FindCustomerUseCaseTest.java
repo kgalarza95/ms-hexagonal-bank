@@ -2,7 +2,7 @@ package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
-import ec.kgalarza.bank.usecase.FindCustomerUseCase;
+import ec.kgalarza.bank.FindCustomerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

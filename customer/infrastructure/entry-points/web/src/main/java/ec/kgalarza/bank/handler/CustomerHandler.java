@@ -4,8 +4,8 @@ import ec.kgalarza.bank.dto.CustomerInDTO;
 import ec.kgalarza.bank.dto.CustomerOutDTO;
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.mapper.CustomerMapper;
-import ec.kgalarza.bank.usecase.FindCustomerUseCase;
-import ec.kgalarza.bank.usecase.SaveCustomerUseCase;
+import ec.kgalarza.bank.FindCustomerUseCase;
+import ec.kgalarza.bank.SaveCustomerUseCase;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

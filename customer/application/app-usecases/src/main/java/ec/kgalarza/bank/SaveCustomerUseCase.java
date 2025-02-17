@@ -1,9 +1,7 @@
-package ec.kgalarza.bank.usecase;
+package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
-
-import java.time.LocalDate;
 
 public class SaveCustomerUseCase {
 

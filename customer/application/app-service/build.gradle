@@ -1,7 +1,7 @@
 
 dependencies {
 
-    implementation project (':usecases')
+    implementation project (':data')
     implementation project (':mysql-repository')
     implementation project (':rabbit-listener-bus')
 

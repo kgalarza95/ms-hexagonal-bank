@@ -1,4 +1,4 @@
-package ec.kgalarza.bank.usecase;
+package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Log;
 import ec.kgalarza.bank.gateway.ILogRepositoryGateway;

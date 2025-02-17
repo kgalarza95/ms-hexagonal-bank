@@ -1,7 +1,6 @@
-group = 'ec.com.sofka'
-version = '0.0.1-SNAPSHOT'
-
 dependencies {
+    implementation project(':model')
+    implementation project(':data')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
