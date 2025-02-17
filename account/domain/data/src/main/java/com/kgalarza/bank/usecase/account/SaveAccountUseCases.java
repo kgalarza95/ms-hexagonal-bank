@@ -7,12 +7,12 @@ import com.kgalarza.bank.gateway.ILogBusMessageGateway;
 
 import java.time.LocalDateTime;
 
-public class SaveAccountUseCase {
+public class SaveAccountUseCases {
 
     AccountRepositoryGateway accountRepositoryGateway;
     ILogBusMessageGateway iLogBusMessageGateway;
 
-    public SaveAccountUseCase(AccountRepositoryGateway accountRepositoryGateway, ILogBusMessageGateway iLogBusMessageGateway) {
+    public SaveAccountUseCases(AccountRepositoryGateway accountRepositoryGateway, ILogBusMessageGateway iLogBusMessageGateway) {
         this.accountRepositoryGateway = accountRepositoryGateway;
         this.iLogBusMessageGateway = iLogBusMessageGateway;
     }

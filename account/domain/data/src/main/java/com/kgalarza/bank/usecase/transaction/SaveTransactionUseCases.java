@@ -5,30 +5,29 @@ import com.kgalarza.bank.entity.Log;
 import com.kgalarza.bank.entity.Transaction;
 import com.kgalarza.bank.exception.GeneralAccountValidationException;
 import com.kgalarza.bank.exception.ResourceNotFoundException;
-import com.kgalarza.bank.gateway.AccountRepositoryGateway;
 import com.kgalarza.bank.gateway.ILogBusMessageGateway;
 import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
-import com.kgalarza.bank.usecase.account.FindAccountUseCase;
-import com.kgalarza.bank.usecase.account.SaveAccountUseCase;
+import com.kgalarza.bank.usecase.account.FindAccountUseCases;
+import com.kgalarza.bank.usecase.account.SaveAccountUseCases;
 
 import java.time.LocalDateTime;
 
-public class SaveTransactionUseCase {
+public class SaveTransactionUseCases {
 
     TransactionRepositoryGateway transactionRepositoryGateway;
-    FindAccountUseCase findAccountUseCase;
-    SaveAccountUseCase saveAccountUseCase;
+    FindAccountUseCases findAccountUseCases;
+    SaveAccountUseCases saveAccountUseCases;
     ILogBusMessageGateway iLogBusMessageGateway;
 
-    public SaveTransactionUseCase(TransactionRepositoryGateway transactionRepositoryGateway, FindAccountUseCase findAccountUseCase, SaveAccountUseCase saveAccountUseCase, ILogBusMessageGateway iLogBusMessageGateway) {
+    public SaveTransactionUseCases(TransactionRepositoryGateway transactionRepositoryGateway, FindAccountUseCases findAccountUseCases, SaveAccountUseCases saveAccountUseCases, ILogBusMessageGateway iLogBusMessageGateway) {
         this.transactionRepositoryGateway = transactionRepositoryGateway;
-        this.findAccountUseCase = findAccountUseCase;
-        this.saveAccountUseCase = saveAccountUseCase;
+        this.findAccountUseCases = findAccountUseCases;
+        this.saveAccountUseCases = saveAccountUseCases;
         this.iLogBusMessageGateway = iLogBusMessageGateway;
     }
 
     public Transaction save(Transaction entidad) {
-        Account account = findAccountUseCase.findById(entidad.getAccountId());
+        Account account = findAccountUseCases.findById(entidad.getAccountId());
 
         if (account == null) {
             throw new ResourceNotFoundException("Account not found with id: " + entidad.getAccountId());
@@ -50,7 +49,7 @@ public class SaveTransactionUseCase {
         Transaction savedTransaction = transactionRepositoryGateway.save(entidad);
 
         account.setOnlineBalance(finalBalance);
-        saveAccountUseCase.save(account);
+        saveAccountUseCases.save(account);
 
         iLogBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
         return savedTransaction;

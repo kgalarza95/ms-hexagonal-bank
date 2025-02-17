@@ -5,7 +5,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    implementation project (':usecases')
+    implementation project (':data')
     implementation project (':mysql-repository')
     implementation project (':rabbit-info-bus')
     implementation project (':web')

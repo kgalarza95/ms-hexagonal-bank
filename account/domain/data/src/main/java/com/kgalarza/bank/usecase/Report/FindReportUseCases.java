@@ -6,11 +6,11 @@ import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class FindReportUseCase {
+public class FindReportUseCases {
 
     private final TransactionRepositoryGateway transactionRepositoryGateway;
 
-    public FindReportUseCase(TransactionRepositoryGateway transactionRepositoryGateway) {
+    public FindReportUseCases(TransactionRepositoryGateway transactionRepositoryGateway) {
         this.transactionRepositoryGateway = transactionRepositoryGateway;
     }
 

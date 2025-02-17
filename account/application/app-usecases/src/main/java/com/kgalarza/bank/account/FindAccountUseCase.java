@@ -1,7 +1,8 @@
-package com.kgalarza.bank.usecase.account;
+package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.gateway.AccountRepositoryGateway;
+
 
 import java.util.List;
 

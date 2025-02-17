@@ -3,11 +3,14 @@ rootProject.name = 'account'
 include ':model'
 findProject(':model').projectDir = file('./domain/model')
 
-include ':usecases'
-findProject(':usecases').projectDir = file('./domain/usecases')
+include ':data'
+findProject(':data').projectDir = file('./domain/data')
 
 include ':app-service'
 findProject(':app-service').projectDir = file('./application/app-service')
+
+include ':app-usecases'
+findProject(':app-usecases').projectDir = file('./application/app-usecases')
 
 include ':mysql-repository'
 findProject(':mysql-repository').projectDir = file('./infrastructure/driven-adapters/mysql-repository')

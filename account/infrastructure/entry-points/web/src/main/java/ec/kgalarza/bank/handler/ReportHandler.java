@@ -1,6 +1,6 @@
 package ec.kgalarza.bank.handler;
 
-import com.kgalarza.bank.usecase.Report.FindReportUseCase;
+import com.kgalarza.bank.report.FindReportUseCase;
 import ec.kgalarza.bank.dto.ReportOutDTO;
 import ec.kgalarza.bank.mapper.ReportMapper;
 import org.springframework.stereotype.Component;

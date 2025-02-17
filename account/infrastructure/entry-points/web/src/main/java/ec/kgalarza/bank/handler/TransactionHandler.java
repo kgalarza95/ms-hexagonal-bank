@@ -1,8 +1,8 @@
 package ec.kgalarza.bank.handler;
 
 import com.kgalarza.bank.entity.Transaction;
-import com.kgalarza.bank.usecase.transaction.FindTransactionUseCase;
-import com.kgalarza.bank.usecase.transaction.SaveTransactionUseCase;
+import com.kgalarza.bank.transaction.FindTransactionUseCase;
+import com.kgalarza.bank.transaction.SaveTransactionUseCase;
 import ec.kgalarza.bank.dto.TransactionInDTO;
 import ec.kgalarza.bank.dto.TransactionOutDTO;
 import ec.kgalarza.bank.mapper.TransactionMapper;

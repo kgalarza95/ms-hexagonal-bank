@@ -1,8 +1,6 @@
-package com.kgalarza.bank.usecase.transaction;
+package com.kgalarza.bank.transaction;
 
-import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.entity.Transaction;
-import com.kgalarza.bank.gateway.AccountRepositoryGateway;
 import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 
 import java.util.List;
