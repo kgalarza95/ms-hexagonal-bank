@@ -37,7 +37,7 @@ public class TransactionHandler {
     @Transactional
     public TransactionOutDTO save(TransactionInDTO transactionInDTO) {
         Transaction transaction = TransactionMapper.toDomain(transactionInDTO);
-        return TransactionMapper.toOutDTO(saveTransactionUseCase.save(transaction));
+        return TransactionMapper.toOutDTO(saveTransactionUseCase.execute(transaction));
     }
 
 }

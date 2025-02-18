@@ -12,6 +12,7 @@ import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class SaveTransactionUseCase {
 
@@ -27,18 +28,13 @@ public class SaveTransactionUseCase {
         this.iLogBusMessageGateway = iLogBusMessageGateway;
     }
 
-    public Transaction save(Transaction entidad) {
-        Account account = findAccountUseCases.findById(entidad.getAccountId());
+    public Transaction execute(Transaction entidad) {
+        Account account = Optional.ofNullable(findAccountUseCases.findById(entidad.getAccountId()))
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found with id: " + entidad.getAccountId()));
 
-        if (account == null) {
-            throw new ResourceNotFoundException("Account not found with id: " + entidad.getAccountId());
-        }
-
-        double finalBalance = account.getOnlineBalance() + entidad.getTransactionAmount();
-
-        if (finalBalance < 0) {
-            throw new GeneralAccountValidationException("Balance not available");
-        }
+        double finalBalance = Optional.of(account.getOnlineBalance() + entidad.getTransactionAmount())
+                .filter(balance -> balance >= 0)
+                .orElseThrow(() -> new GeneralAccountValidationException("Balance not available"));
 
         entidad.setInitialBalance(account.getOnlineBalance());
         entidad.setAvailableBalance(finalBalance);
