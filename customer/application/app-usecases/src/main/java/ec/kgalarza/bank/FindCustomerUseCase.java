@@ -1,6 +1,7 @@
 package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
+import ec.kgalarza.bank.exception.ResourceNotFoundException;
 import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
 
 import java.util.List;
@@ -14,7 +15,10 @@ public class FindCustomerUseCase {
     }
 
     public List<Customer> execute() {
-        return customerRepositoryGateway.findAll();
+        List<Customer> customers = customerRepositoryGateway.findAll();
+        if (customers == null || customers.isEmpty()) {
+            throw new ResourceNotFoundException("No customers found");
+        }
+        return customers;
     }
-
 }

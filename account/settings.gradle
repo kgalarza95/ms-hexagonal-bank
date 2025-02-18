@@ -1,10 +1,11 @@
 rootProject.name = 'account'
 
-include ':model'
-findProject(':model').projectDir = file('./domain/model')
 
 include ':data'
 findProject(':data').projectDir = file('./domain/data')
+
+include ':model'
+findProject(':model').projectDir = file('./domain/model')
 
 include ':app-service'
 findProject(':app-service').projectDir = file('./application/app-service')
