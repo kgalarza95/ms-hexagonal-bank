@@ -1,23 +1,51 @@
 version: '3.8'
 
 services:
+  mysql_base_bank:
+    image: mysql:latest
+    container_name: mysql_base_bank
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: banco_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      timeout: 20s
+      retries: 10
+
   account-service:
     build:
       context: ./account/application/app-service
     container_name: account-service
+    restart: always
     ports:
-      - "8081:8081"
-    networks:
-      - bank-network
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_base_bank:3306/banco_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      mysql_base_bank:
+        condition: service_healthy
 
   customer-service:
     build:
       context: ./customer/application/app-service
     container_name: customer-service
+    restart: always
     ports:
-      - "8082:8082"
-    networks:
-      - bank-network
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_base_bank:3306/banco_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      mysql_base_bank:
+        condition: service_healthy
 
-networks:
-  bank-network:
+volumes:
+  mysql_data:
