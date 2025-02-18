@@ -5,16 +5,15 @@ import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
 
 import java.util.List;
 
-public class FindCustomerUseCase {
+public class FindByIdCustomerUseCase {
 
     private final CustomerRepositoryGateway customerRepositoryGateway;
 
-    public FindCustomerUseCase(CustomerRepositoryGateway customerRepositoryGateway) {
+    public FindByIdCustomerUseCase(CustomerRepositoryGateway customerRepositoryGateway) {
         this.customerRepositoryGateway = customerRepositoryGateway;
     }
 
-    public List<Customer> execute() {
-        return customerRepositoryGateway.findAll();
+    public Customer execute(Long id) {
+        return customerRepositoryGateway.findById(id);
     }
-
 }

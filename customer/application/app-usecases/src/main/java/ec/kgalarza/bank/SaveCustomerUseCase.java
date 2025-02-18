@@ -5,13 +5,13 @@ import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
 
 public class SaveCustomerUseCase {
 
-    CustomerRepositoryGateway customerRepositoryGateway;
+    private final CustomerRepositoryGateway customerRepositoryGateway;
 
     public SaveCustomerUseCase(CustomerRepositoryGateway customerRepositoryGateway) {
         this.customerRepositoryGateway = customerRepositoryGateway;
     }
 
-    public Customer save(Customer entidad) {
+    public Customer execute(Customer entidad) {
         return customerRepositoryGateway.save(entidad);
     }
 

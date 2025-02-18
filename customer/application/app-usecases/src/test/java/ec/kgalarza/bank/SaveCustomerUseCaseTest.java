@@ -2,7 +2,6 @@ package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
-import ec.kgalarza.bank.SaveCustomerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,13 +23,13 @@ public class SaveCustomerUseCaseTest {
     }
 
     @Test
-    void save_ShouldReturnSavedCustomer() {
+    void execute_ShouldReturnSavedCustomer() {
         // Arrange
         Customer customerToSave = new Customer("John Doe", "Male", 30, "123456789", "123 Street", "555-1234", 1L, "password1", true);
         Mockito.when(customerRepositoryGateway.save(customerToSave)).thenReturn(customerToSave);
 
         // Act
-        Customer result = saveCustomerUseCase.save(customerToSave);
+        Customer result = saveCustomerUseCase.execute(customerToSave);
 
         // Assert
         Assertions.assertEquals(customerToSave, result);

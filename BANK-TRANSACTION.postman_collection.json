@@ -1,0 +1,1082 @@
+{
+	"info": {
+		"_postman_id": "80c138e5-324a-4b97-b8e4-ed34e2b53379",
+		"name": "BANK-TRANSACTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38667665"
+	},
+	"item": [
+		{
+			"name": "DOCUMENTACION",
+			"item": [
+				{
+					"name": "Swagger UI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto-cli}}/api/swagger-ui/index.html",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto-cli}}",
+							"path": [
+								"api",
+								"swagger-ui",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MS1-CLIENTES",
+			"item": [
+				{
+					"name": "01.-Crear-clientes",
+					"item": [
+						{
+							"name": "01.-Jose-Lema",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jose Lema\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"0930484409\",\r\n    \"address\": \"Otavalo sn y principal\",\r\n    \"phone\": \"0982547850\",\r\n    \"password\": \"1234\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Marianela-Montalvo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Marianela Montalvo\",\r\n    \"gender\": \"F\",\r\n    \"age\": 28,\r\n    \"identification\": \"0975123650\",\r\n    \"address\": \"Amazonas y NNUU\",\r\n    \"phone\": \"0975489650\",\r\n    \"password\": \"5678\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03.-Juan-Osorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Juan Osorio\",\r\n    \"gender\": \"M\",\r\n    \"age\": 40,\r\n    \"identification\": \"0988748889\",\r\n    \"address\": \"13 junio y Equinoccial\",\r\n    \"phone\": \"0988745870\",\r\n    \"password\": \"1245\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04.-validacion-error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Juan Osorio\",\r\n    \"gender\": \"M\",\r\n    \"age\": 40,\r\n    \"identification\": \"0988748889\",\r\n    \"address\": \"13 junio y Equinoccial\",\r\n    \"phone\": \"0988745870\",\r\n    \"password\": \"1245\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05.-Kevin-galarza-eliminar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Kevin Galarza\",\r\n    \"gender\": \"M\",\r\n    \"age\": 40,\r\n    \"identification\": \"0930988804\",\r\n    \"address\": \"13 junio y Equinoccial\",\r\n    \"phone\": \"0961251803\",\r\n    \"password\": \"1245\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02.-Obtener-clientes",
+					"item": [
+						{
+							"name": "01.-Todos-clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Cliente-por-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}/1",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03.-Editar-clientes",
+					"item": [
+						{
+							"name": "cliente",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerId\": 4,\r\n    \"password\": \"1245\",\r\n    \"status\": true,\r\n    \"name\": \"Juan Osorio dos\",\r\n    \"gender\": \"M\",\r\n    \"age\": 40,\r\n    \"identification\": \"0988748889\",\r\n    \"address\": \"13 junio y Equinoccial\",\r\n    \"phone\": \"0988745870\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cliente",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombreCliente\": \"Carlos López\",\r\n    \"generoCliente\": \"M\",\r\n    \"edadCliente\": 35,\r\n    \"identificacionCliente\": \"0987654324\",\r\n    \"direccionCliente\": \"Av. Siempre Viva 123\",\r\n    \"telefonoCliente\": \"0998765432\",\r\n    \"clienteidCliente\": 5,\r\n    \"contrasenaCliente\": \"securePass\",\r\n    \"estadoCliente\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "04.-Eliminar-clientes",
+					"item": [
+						{
+							"name": "cliente",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto-cli}}/api/v1/{{uri-clientes}}/5",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto-cli}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-clientes}}",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MS2-CUENTAS",
+			"item": [
+				{
+					"name": "01.-Crear-cuentas",
+					"item": [
+						{
+							"name": "01.-Cuenta-jose-lema",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountNumber\": \"478758\",\r\n    \"accountType\": \"Ahorro\",\r\n    \"onlineBalance\": 2000,\r\n    \"status\": true,\r\n    \"customerId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Cuenta-marianela-montalvo-cta1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"225487\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 100,\r\n    \"estado\": true,\r\n    \"clienteid\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03.-Cuenta-juan-osorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"495878\",\r\n    \"tipoCuenta\": \"Ahorros\",\r\n    \"saldoEnLinea\": 0,\r\n    \"estado\": true,\r\n    \"clienteid\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04.-Cuenta-marianela-montalvo-cta2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"496825\",\r\n    \"tipoCuenta\": \"Ahorros\",\r\n    \"saldoEnLinea\": 540,\r\n    \"estado\": true,\r\n    \"clienteid\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05.-Cuenta-jose-lema-cta2-cte",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 1000,\r\n    \"estado\": true,\r\n    \"clienteid\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "06.-Cuenta-no-cliente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 1000,\r\n    \"estado\": true,\r\n    \"clienteid\": 100\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "07.-Cuenta-duplicada",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 1000,\r\n    \"estado\": true,\r\n    \"clienteid\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02.-Obtener-cuentas",
+					"item": [
+						{
+							"name": "01.-Todas-cuentas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Cuentas-por-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}/1",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03.-Editar-cuentas",
+					"item": [
+						{
+							"name": "ActualizarCuenta",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"numeroCuenta\": \"58554777777\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 1000.0,\r\n    \"estado\": true,\r\n    \"clienteid\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}/14",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ActualizarParcialCuenta",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"numeroCuenta\": \"58554777777\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoEnLinea\": 1000.0,\r\n    \"estado\": true,\r\n    \"clienteid\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}/14",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}",
+										"14"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "04.-Eliminar-cuentas",
+					"item": [
+						{
+							"name": "EliminarCuenta",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\",\r\n    \"edad\": 30,\r\n    \"identificacion\": \"1234567890\",\r\n    \"direccion\": \"Calle Falsa 123, Ciudad\",\r\n    \"telefono\": \"555-1234\",\r\n    \"contrasena\": \"contrasenaSegura123\",\r\n    \"estado\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-cuentas}}/1",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-cuentas}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MS2-MOVIMIENTOS",
+			"item": [
+				{
+					"name": "01.-Crear-movimientos",
+					"item": [
+						{
+							"name": "GeneraMovimiento",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"valorMovimiento\": -50.75,\r\n  \"descripcionMovimiento\": \"\",\r\n  \"idCuenta\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "01.-Movimiento-cuenta-478758",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"transactionAmount\": -575.0,\r\n  \"accountId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Movimiento-cuenta-225487",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"valorMovimiento\": 600.0,\r\n  \"idCuenta\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03.-Movimiento-cuenta-495878",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"valorMovimiento\": 150.0,\r\n  \"idCuenta\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04.-Movimiento-cuenta-496825",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"valorMovimiento\": -540.0,\r\n  \"idCuenta\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02.-Obtener-movimientos",
+					"item": [
+						{
+							"name": "01.-Todos-Movimientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02.-Movimientos-by-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-movimientos}}/1",
+									"protocol": "http",
+									"host": [
+										"{{servidor}}"
+									],
+									"port": "{{puerto}}",
+									"path": [
+										"api",
+										"v1",
+										"{{uri-movimientos}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03.-Editar-movimientos",
+					"item": []
+				},
+				{
+					"name": "04.-Eliminar-movimientos",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "MS2-REPORTES",
+			"item": [
+				{
+					"name": "02.-Estado-cuentas-fecha-usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-reportes}}/user-statement?startDate=2025-01-01&endDate=2025-03-03&userId=1",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{uri-reportes}}",
+								"user-statement"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-03-03"
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02.-Estado-cuentas-fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-reportes}}/account-statement?startDate=2025-01-01&endDate=2025-03-03",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{uri-reportes}}",
+								"account-statement"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-03-03"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03.-Estado-cuenta-todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{uri-reportes}}/all-statements",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{uri-reportes}}",
+								"all-statements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url-context",
+			"value": "http://localhost:8081/api",
+			"type": "string"
+		},
+		{
+			"key": "servidor",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "puerto",
+			"value": "8082",
+			"type": "string"
+		},
+		{
+			"key": "uri-cuentas",
+			"value": "account",
+			"type": "string"
+		},
+		{
+			"key": "uri-movimientos",
+			"value": "transaction",
+			"type": "string"
+		},
+		{
+			"key": "uri-reportes",
+			"value": "reportes",
+			"type": "string"
+		},
+		{
+			"key": "puerto-cli",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "uri-clientes",
+			"value": "customer",
+			"type": "string"
+		}
+	]
+}

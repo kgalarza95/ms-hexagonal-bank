@@ -1,6 +1,5 @@
 package ec.kgalarza.bank.config;
 
-import ec.kgalarza.bank.LogBusMessageListenerGategway;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,10 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 
 @Configuration
 public class RabbitConfig {
@@ -58,12 +53,4 @@ public class RabbitConfig {
         rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }
-
-//    @Bean
-//    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
-//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-//        container.setConnectionFactory(connectionFactory);
-//        container.setMessageListener(new MessageListenerAdapter(new LogBusMessageListenerGategway(), messageConverter()));
-//        return container;
-//    }
 }

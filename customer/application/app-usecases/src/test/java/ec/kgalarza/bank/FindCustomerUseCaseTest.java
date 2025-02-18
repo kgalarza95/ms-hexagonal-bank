@@ -2,7 +2,6 @@ package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
-import ec.kgalarza.bank.FindCustomerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,14 +18,16 @@ public class FindCustomerUseCaseTest {
     private CustomerRepositoryGateway customerRepositoryGateway;
 
     private FindCustomerUseCase findCustomerUseCase;
+    private FindByIdCustomerUseCase findByIdCustomerUseCase;
 
     @BeforeEach
     void setUp() {
         findCustomerUseCase = new FindCustomerUseCase(customerRepositoryGateway);
+        findByIdCustomerUseCase = new FindByIdCustomerUseCase(customerRepositoryGateway);
     }
 
     @Test
-    void findAll_ShouldReturnListOfCustomers() {
+    void execute_ShouldReturnListOfCustomers() {
         // Arrange
         List<Customer> expectedCustomers = List.of(
                 new Customer("John Doe", "Male", 30, "123456789", "123 Street", "555-1234", 1L, "password1", true),
@@ -35,7 +36,7 @@ public class FindCustomerUseCaseTest {
         Mockito.when(customerRepositoryGateway.findAll()).thenReturn(expectedCustomers);
 
         // Act
-        List<Customer> result = findCustomerUseCase.findAll();
+        List<Customer> result = findCustomerUseCase.execute();
 
         // Assert
         Assertions.assertEquals(expectedCustomers, result);
@@ -49,7 +50,7 @@ public class FindCustomerUseCaseTest {
         Customer expectedCustomer = new Customer("John Doe", "Male", 30, "123456789", "123 Street", "555-1234", customerId, "password1", true);
         Mockito.when(customerRepositoryGateway.findById(customerId)).thenReturn(expectedCustomer);
 
-        Customer result = findCustomerUseCase.findById(customerId);
+        Customer result = findByIdCustomerUseCase.execute(customerId);
 
         Assertions.assertEquals(expectedCustomer, result);
         Mockito.verify(customerRepositoryGateway).findById(customerId);
@@ -60,7 +61,7 @@ public class FindCustomerUseCaseTest {
         Long customerId = 99L;
         Mockito.when(customerRepositoryGateway.findById(customerId)).thenReturn(null);
 
-        Customer result = findCustomerUseCase.findById(customerId);
+        Customer result = findByIdCustomerUseCase.execute(customerId);
 
         Assertions.assertNull(result);
         Mockito.verify(customerRepositoryGateway).findById(customerId);
