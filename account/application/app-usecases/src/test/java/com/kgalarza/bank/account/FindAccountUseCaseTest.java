@@ -28,43 +28,34 @@ public class FindAccountUseCaseTest {
 
     @Test
     void findAll_ShouldReturnListOfAccounts() {
-        // Arrange
         Account account1 = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
         Account account2 = new Account(2L, "654321", "Savings", 2500.0, false, 102L);
         List<Account> accounts = Arrays.asList(account1, account2);
         Mockito.when(accountRepositoryGateway.findAll()).thenReturn(accounts);
 
-        // Act
         List<Account> result = findAccountUseCase.findAll();
 
-        // Assert
         Assertions.assertEquals(accounts, result);
         Mockito.verify(accountRepositoryGateway).findAll();
     }
 
     @Test
     void findById_ShouldReturnAccount_WhenAccountExists() {
-        // Arrange
         Account account = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
         Mockito.when(accountRepositoryGateway.findById(1L)).thenReturn(account);
 
-        // Act
         Account result = findAccountUseCase.findById(1L);
 
-        // Assert
         Assertions.assertEquals(account, result);
         Mockito.verify(accountRepositoryGateway).findById(1L);
     }
 
     @Test
     void findById_ShouldReturnNull_WhenAccountDoesNotExist() {
-        // Arrange
         Mockito.when(accountRepositoryGateway.findById(99L)).thenReturn(null);
 
-        // Act
         Account result = findAccountUseCase.findById(99L);
 
-        // Assert
         Assertions.assertNull(result);
         Mockito.verify(accountRepositoryGateway).findById(99L);
     }
