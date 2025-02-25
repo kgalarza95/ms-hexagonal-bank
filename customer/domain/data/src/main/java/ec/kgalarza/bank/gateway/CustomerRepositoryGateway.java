@@ -8,5 +8,6 @@ public interface CustomerRepositoryGateway {
 
     Customer save(Customer customer);
     Customer findById(Long id);
+    Customer findByIdentification(String identification);
     List<Customer> findAll();
 }

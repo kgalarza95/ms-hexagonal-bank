@@ -34,15 +34,17 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
-        return ex.getBindingResult().getFieldErrors()
+    public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = ex.getBindingResult().getFieldErrors()
                 .stream()
                 .collect(Collectors.toMap(
                         error -> error.getField(),
                         error -> error.getDefaultMessage()
                 ));
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException ex) {
@@ -52,30 +54,26 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
+    @ExceptionHandler(CustomerAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.CONFLICT.value());
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> globalExceptionHandler(Exception ex) {
-        String mensajeUsuario = "Lo sentimos, ha ocurrido un error inesperado. Por favor, intenta nuevamente más tarde.";
+        String userMessage = "Sorry, an unexpected error has occurred. Please try again later.";
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.put("message", mensajeUsuario);
+        response.put("message", userMessage);
         response.put("error", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
-
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<Map<String, Object>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
-        String mensajeUsuario = "Ya existe un registro con los mismos datos. Verifica la información e intenta nuevamente.";
-
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", HttpStatus.CONFLICT.value());
-        response.put("message", mensajeUsuario);
-        response.put("error", ex.getRootCause() != null ? ex.getRootCause().getMessage() : ex.getMessage());
-
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
-    }
-
 
 }

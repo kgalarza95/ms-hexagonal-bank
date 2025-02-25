@@ -1,5 +1,6 @@
 package ec.kgalarza.bank.mapper;
 
+import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.entity.Transaction;
 import ec.kgalarza.bank.model.entity.AccountEntity;
 import ec.kgalarza.bank.model.entity.TransactionEntity;
@@ -36,6 +37,11 @@ public class TransactionRepoMapper {
         dto.setTransactionAmount(entity.getTransactionAmount());
         dto.setAvailableBalance(entity.getAvailableBalance());
         dto.setTransactionDescription(entity.getTransactionDescription());
+
+        Account account = new Account();
+        account.setId(entity.getAccount().getId());
+        dto.setAccount(account);
+        dto.setAccountId(entity.getAccount().getId());
         return dto;
     }
 }

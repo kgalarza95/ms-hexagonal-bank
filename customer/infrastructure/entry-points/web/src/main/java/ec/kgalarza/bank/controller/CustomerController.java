@@ -31,12 +31,12 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerOutDTO> save(@RequestBody CustomerInDTO customerInDTO) {
+    public ResponseEntity<CustomerOutDTO> save(@Valid @RequestBody CustomerInDTO customerInDTO) {
         return new ResponseEntity<>(customerHandler.save(customerInDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<CustomerOutDTO> update(@RequestBody CustomerInDTO customerInDTO) {
+    public ResponseEntity<CustomerOutDTO> update(@Valid @RequestBody CustomerInDTO customerInDTO) {
         return new ResponseEntity<>(customerHandler.save(customerInDTO), HttpStatus.CREATED);
     }
 }

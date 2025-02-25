@@ -34,9 +34,17 @@ public class CustomerAdapter implements CustomerRepositoryGateway {
     }
 
     @Override
+    public Customer findByIdentification(String identification) {
+        return iCustomerRepository.findByIdentification(identification)
+                .map(CustomerRepoMapper::toDomain)
+                .orElse(null);
+    }
+
+    @Override
     public List<Customer> findAll() {
         return iCustomerRepository.findAll().stream()
                 .map(CustomerRepoMapper::toDomain)
                 .toList();
     }
+
 }

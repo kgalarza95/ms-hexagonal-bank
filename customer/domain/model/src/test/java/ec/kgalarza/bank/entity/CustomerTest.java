@@ -21,7 +21,7 @@ public class CustomerTest {
 
     @Test
     public void testCustomerCreationWithFullConstructor() {
-        String name = "John Doe";
+        String name = "Kevin Galarza";
         String gender = "Male";
         Integer age = 30;
         String identification = "123456789";

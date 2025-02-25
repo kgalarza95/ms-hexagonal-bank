@@ -14,7 +14,7 @@ public class CustomerInDTO {
     private String name;
 
     @NotBlank(message = "Gender cannot be empty")
-    @Pattern(regexp = "Male|Female|Other", message = "Gender must be Male, Female, or Other")
+    @Pattern(regexp = "M|F|O", message = "Gender must be M, F or O")
     private String gender;
 
     @NotNull(message = "Age is required")
