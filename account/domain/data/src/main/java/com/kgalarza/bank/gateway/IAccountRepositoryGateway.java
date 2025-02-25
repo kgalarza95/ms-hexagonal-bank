@@ -4,7 +4,7 @@ import com.kgalarza.bank.entity.Account;
 
 import java.util.List;
 
-public interface AccountRepositoryGateway {
+public interface IAccountRepositoryGateway {
 
     Account save(Account account);
     Account findById(Long id);

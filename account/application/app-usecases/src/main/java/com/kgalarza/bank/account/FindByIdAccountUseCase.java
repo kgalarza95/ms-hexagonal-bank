@@ -3,19 +3,17 @@ package com.kgalarza.bank.account;
 import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 
-
 import java.util.List;
 
-public class FindAccountUseCase {
+public class FindByIdAccountUseCase {
 
     IAccountRepositoryGateway IAccountRepositoryGateway;
 
-    public FindAccountUseCase(IAccountRepositoryGateway IAccountRepositoryGateway) {
+    public FindByIdAccountUseCase(IAccountRepositoryGateway IAccountRepositoryGateway) {
         this.IAccountRepositoryGateway = IAccountRepositoryGateway;
     }
 
-    public List<Account> execute() {
-        return IAccountRepositoryGateway.findAll();
+    public Account execute(Long id) {
+        return IAccountRepositoryGateway.findById(id);
     }
-
 }

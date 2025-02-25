@@ -6,16 +6,15 @@ import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 import java.util.List;
 
 
-public class FindTransactionUseCase {
+public class FindByIdTransactionUseCase {
 
     ITransactionRepositoryGateway ITransactionRepositoryGateway;
 
-    public FindTransactionUseCase(ITransactionRepositoryGateway ITransactionRepositoryGateway) {
+    public FindByIdTransactionUseCase(ITransactionRepositoryGateway ITransactionRepositoryGateway) {
         this.ITransactionRepositoryGateway = ITransactionRepositoryGateway;
     }
 
-    public List<Transaction> execute() {
-        return ITransactionRepositoryGateway.findAll();
+    public Transaction execute(Long id) {
+        return ITransactionRepositoryGateway.findById(id);
     }
-
 }

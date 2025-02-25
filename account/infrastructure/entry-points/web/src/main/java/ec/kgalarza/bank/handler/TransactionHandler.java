@@ -1,6 +1,7 @@
 package ec.kgalarza.bank.handler;
 
 import com.kgalarza.bank.entity.Transaction;
+import com.kgalarza.bank.transaction.FindByIdTransactionUseCase;
 import com.kgalarza.bank.transaction.FindTransactionUseCase;
 import com.kgalarza.bank.transaction.SaveTransactionUseCase;
 import ec.kgalarza.bank.dto.TransactionInDTO;
@@ -15,22 +16,24 @@ import java.util.stream.Collectors;
 @Component
 public class TransactionHandler {
 
-    FindTransactionUseCase findTransactionUseCase;
-    SaveTransactionUseCase saveTransactionUseCase;
+    private final FindByIdTransactionUseCase findByIdTransactionUseCase;
+    private final FindTransactionUseCase findTransactionUseCase;
+    private final SaveTransactionUseCase saveTransactionUseCase;
 
-    public TransactionHandler(FindTransactionUseCase findTransactionUseCase, SaveTransactionUseCase saveTransactionUseCase) {
+    public TransactionHandler(FindByIdTransactionUseCase findByIdTransactionUseCase, FindTransactionUseCase findTransactionUseCase, SaveTransactionUseCase saveTransactionUseCase) {
+        this.findByIdTransactionUseCase = findByIdTransactionUseCase;
         this.findTransactionUseCase = findTransactionUseCase;
         this.saveTransactionUseCase = saveTransactionUseCase;
     }
 
     public List<TransactionOutDTO> findAll() {
-        return findTransactionUseCase.findAll().stream()
+        return findTransactionUseCase.execute().stream()
                 .map(TransactionMapper::toOutDTO)
                 .collect(Collectors.toList());
     }
 
     public TransactionOutDTO findById(Long id) {
-        Transaction transaction = findTransactionUseCase.findById(id);
+        Transaction transaction = findByIdTransactionUseCase.execute(id);
         return transaction != null ? TransactionMapper.toOutDTO(transaction) : null;
     }
 

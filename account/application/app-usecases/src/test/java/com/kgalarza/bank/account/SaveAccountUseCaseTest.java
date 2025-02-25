@@ -3,7 +3,7 @@ package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.entity.Log;
-import com.kgalarza.bank.gateway.AccountRepositoryGateway;
+import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 import com.kgalarza.bank.gateway.ILogBusMessageGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 public class SaveAccountUseCaseTest {
     @Mock
-    private AccountRepositoryGateway accountRepositoryGateway;
+    private IAccountRepositoryGateway IAccountRepositoryGateway;
 
     @Mock
     private ILogBusMessageGateway iLogBusMessageGateway;
@@ -26,17 +26,17 @@ public class SaveAccountUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        saveAccountUseCase = new SaveAccountUseCase(accountRepositoryGateway, iLogBusMessageGateway);
+        saveAccountUseCase = new SaveAccountUseCase(IAccountRepositoryGateway, iLogBusMessageGateway);
     }
 
     @Test
     void save_ShouldReturnSavedAccount_AndSendLogMessage() {
         Account accountToSave = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
-        Mockito.when(accountRepositoryGateway.save(accountToSave)).thenReturn(accountToSave);
+        Mockito.when(IAccountRepositoryGateway.save(accountToSave)).thenReturn(accountToSave);
 
-        Account result = saveAccountUseCase.save(accountToSave);
+        Account result = saveAccountUseCase.execute(accountToSave);
 
-        Mockito.verify(accountRepositoryGateway).save(accountToSave);
+        Mockito.verify(IAccountRepositoryGateway).save(accountToSave);
 
         Mockito.verify(iLogBusMessageGateway).sendMessage(any(Log.class));
 

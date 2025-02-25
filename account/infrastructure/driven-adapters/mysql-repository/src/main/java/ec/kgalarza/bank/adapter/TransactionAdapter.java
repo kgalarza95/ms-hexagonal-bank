@@ -2,7 +2,7 @@ package ec.kgalarza.bank.adapter;
 
 import com.kgalarza.bank.entity.AccountStatementReport;
 import com.kgalarza.bank.entity.Transaction;
-import com.kgalarza.bank.gateway.TransactionRepositoryGateway;
+import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 import ec.kgalarza.bank.mapper.ReportRepoMapper;
 import ec.kgalarza.bank.mapper.TransactionRepoMapper;
 import ec.kgalarza.bank.model.entity.TransactionEntity;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class TransactionAdapter implements TransactionRepositoryGateway {
+public class TransactionAdapter implements ITransactionRepositoryGateway {
 
     ITransactionRepository iTransactionRepository;
 

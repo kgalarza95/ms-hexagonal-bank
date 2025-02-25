@@ -1,7 +1,7 @@
 package ec.kgalarza.bank.adapter;
 
 import com.kgalarza.bank.entity.Account;
-import com.kgalarza.bank.gateway.AccountRepositoryGateway;
+import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 import ec.kgalarza.bank.mapper.AccountRepoMapper;
 import ec.kgalarza.bank.model.entity.AccountEntity;
 import ec.kgalarza.bank.repository.IAccountRepository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountAdapter implements AccountRepositoryGateway {
+public class AccountAdapter implements IAccountRepositoryGateway {
 
     IAccountRepository iAccountRepository;
 

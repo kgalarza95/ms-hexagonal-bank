@@ -1,5 +1,8 @@
 package ec.kgalarza.bank.dto;
 
+import lombok.Data;
+
+@Data
 public class AccountInDTO {
 
     private String accountNumber;
@@ -8,46 +11,4 @@ public class AccountInDTO {
     private boolean status;
     private Long customerId;
 
-    public AccountInDTO() {
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public double getOnlineBalance() {
-        return onlineBalance;
-    }
-
-    public void setOnlineBalance(double onlineBalance) {
-        this.onlineBalance = onlineBalance;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
 }

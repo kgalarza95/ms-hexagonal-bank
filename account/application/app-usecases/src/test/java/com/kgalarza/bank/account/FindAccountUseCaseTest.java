@@ -1,7 +1,7 @@
 package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
-import com.kgalarza.bank.gateway.AccountRepositoryGateway;
+import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,13 +17,15 @@ import java.util.List;
 public class FindAccountUseCaseTest {
 
     @Mock
-    private AccountRepositoryGateway accountRepositoryGateway;
+    private IAccountRepositoryGateway IAccountRepositoryGateway;
 
     private FindAccountUseCase findAccountUseCase;
+    private FindByIdAccountUseCase findByIdAccountUseCase;
 
     @BeforeEach
     void setUp() {
-        findAccountUseCase = new FindAccountUseCase(accountRepositoryGateway);
+        findAccountUseCase = new FindAccountUseCase(IAccountRepositoryGateway);
+        findByIdAccountUseCase = new FindByIdAccountUseCase(IAccountRepositoryGateway);
     }
 
     @Test
@@ -31,33 +33,33 @@ public class FindAccountUseCaseTest {
         Account account1 = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
         Account account2 = new Account(2L, "654321", "Savings", 2500.0, false, 102L);
         List<Account> accounts = Arrays.asList(account1, account2);
-        Mockito.when(accountRepositoryGateway.findAll()).thenReturn(accounts);
+        Mockito.when(IAccountRepositoryGateway.findAll()).thenReturn(accounts);
 
-        List<Account> result = findAccountUseCase.findAll();
+        List<Account> result = findAccountUseCase.execute();
 
         Assertions.assertEquals(accounts, result);
-        Mockito.verify(accountRepositoryGateway).findAll();
+        Mockito.verify(IAccountRepositoryGateway).findAll();
     }
 
     @Test
     void findById_ShouldReturnAccount_WhenAccountExists() {
         Account account = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
-        Mockito.when(accountRepositoryGateway.findById(1L)).thenReturn(account);
+        Mockito.when(IAccountRepositoryGateway.findById(1L)).thenReturn(account);
 
-        Account result = findAccountUseCase.findById(1L);
+        Account result = findByIdAccountUseCase.execute(1L);
 
         Assertions.assertEquals(account, result);
-        Mockito.verify(accountRepositoryGateway).findById(1L);
+        Mockito.verify(IAccountRepositoryGateway).findById(1L);
     }
 
     @Test
     void findById_ShouldReturnNull_WhenAccountDoesNotExist() {
-        Mockito.when(accountRepositoryGateway.findById(99L)).thenReturn(null);
+        Mockito.when(IAccountRepositoryGateway.findById(99L)).thenReturn(null);
 
-        Account result = findAccountUseCase.findById(99L);
+        Account result = findByIdAccountUseCase.execute(99L);
 
         Assertions.assertNull(result);
-        Mockito.verify(accountRepositoryGateway).findById(99L);
+        Mockito.verify(IAccountRepositoryGateway).findById(99L);
     }
 
 }
