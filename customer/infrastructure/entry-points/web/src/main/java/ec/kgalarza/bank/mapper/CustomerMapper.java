@@ -12,6 +12,7 @@ public class CustomerMapper {
         }
 
         Customer customer = new Customer();
+        customer.setCustomerId(customerInDTO.getCustomerId());
         customer.setPassword(customerInDTO.getPassword());
         customer.setStatus(customerInDTO.isStatus());
         customer.setName(customerInDTO.getName());

@@ -37,6 +37,6 @@ public class CustomerController {
 
     @PutMapping
     public ResponseEntity<CustomerOutDTO> update(@Valid @RequestBody CustomerInDTO customerInDTO) {
-        return new ResponseEntity<>(customerHandler.save(customerInDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerHandler.update(customerInDTO), HttpStatus.CREATED);
     }
 }

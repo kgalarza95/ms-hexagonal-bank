@@ -1,6 +1,7 @@
 package ec.kgalarza.bank.handler;
 
 import ec.kgalarza.bank.FindByIdCustomerUseCase;
+import ec.kgalarza.bank.UpdateCustomerUseCase;
 import ec.kgalarza.bank.dto.CustomerInDTO;
 import ec.kgalarza.bank.dto.CustomerOutDTO;
 import ec.kgalarza.bank.entity.Customer;
@@ -16,13 +17,15 @@ import java.util.stream.Collectors;
 public class CustomerHandler {
 
     private final FindCustomerUseCase findCustomerUseCase;
-    private final FindByIdCustomerUseCase  findByIdCustomerUseCase;
+    private final FindByIdCustomerUseCase findByIdCustomerUseCase;
     private final SaveCustomerUseCase saveCustomerUseCase;
+    private final UpdateCustomerUseCase updateCustomerUseCase;
 
-    public CustomerHandler(FindCustomerUseCase findCustomerUseCase, FindByIdCustomerUseCase findByIdCustomerUseCase, SaveCustomerUseCase saveCustomerUseCase) {
+    public CustomerHandler(FindCustomerUseCase findCustomerUseCase, FindByIdCustomerUseCase findByIdCustomerUseCase, SaveCustomerUseCase saveCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase) {
         this.findCustomerUseCase = findCustomerUseCase;
         this.findByIdCustomerUseCase = findByIdCustomerUseCase;
         this.saveCustomerUseCase = saveCustomerUseCase;
+        this.updateCustomerUseCase = updateCustomerUseCase;
     }
 
     public List<CustomerOutDTO> findAll() {
@@ -39,6 +42,11 @@ public class CustomerHandler {
     public CustomerOutDTO save(CustomerInDTO customerInDTO) {
         Customer customer = CustomerMapper.toDomain(customerInDTO);
         return CustomerMapper.toOutDTO(saveCustomerUseCase.execute(customer));
+    }
+
+    public CustomerOutDTO update(CustomerInDTO customerInDTO) {
+        Customer customer = CustomerMapper.toDomain(customerInDTO);
+        return CustomerMapper.toOutDTO(updateCustomerUseCase.execute(customer));
     }
 
 }
