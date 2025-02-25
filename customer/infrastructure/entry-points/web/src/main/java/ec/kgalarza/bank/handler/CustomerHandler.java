@@ -8,6 +8,7 @@ import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.mapper.CustomerMapper;
 import ec.kgalarza.bank.FindCustomerUseCase;
 import ec.kgalarza.bank.SaveCustomerUseCase;
+import ec.kgalarza.bank.mapper.ICustomerMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,23 +31,23 @@ public class CustomerHandler {
 
     public List<CustomerOutDTO> findAll() {
         return findCustomerUseCase.execute().stream()
-                .map(CustomerMapper::toOutDTO)
+                .map(customer -> ICustomerMapper.INSTANCE.toOutDTO(customer))
                 .collect(Collectors.toList());
     }
 
     public CustomerOutDTO findById(Long id) {
         Customer customer = findByIdCustomerUseCase.execute(id);
-        return customer != null ? CustomerMapper.toOutDTO(customer) : null;
+        return customer != null ? ICustomerMapper.INSTANCE.toOutDTO(customer) : null;
     }
 
     public CustomerOutDTO save(CustomerInDTO customerInDTO) {
-        Customer customer = CustomerMapper.toDomain(customerInDTO);
-        return CustomerMapper.toOutDTO(saveCustomerUseCase.execute(customer));
+        Customer customer = ICustomerMapper.INSTANCE.toDomain(customerInDTO);
+        return ICustomerMapper.INSTANCE.toOutDTO(saveCustomerUseCase.execute(customer));
     }
 
     public CustomerOutDTO update(CustomerInDTO customerInDTO) {
-        Customer customer = CustomerMapper.toDomain(customerInDTO);
-        return CustomerMapper.toOutDTO(updateCustomerUseCase.execute(customer));
+        Customer customer = ICustomerMapper.INSTANCE.toDomain(customerInDTO);
+        return ICustomerMapper.INSTANCE.toOutDTO(updateCustomerUseCase.execute(customer));
     }
 
 }
