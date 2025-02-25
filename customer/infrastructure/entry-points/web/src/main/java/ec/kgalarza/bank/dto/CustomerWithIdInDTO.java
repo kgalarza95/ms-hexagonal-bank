@@ -4,7 +4,11 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class CustomerInDTO {
+public class CustomerWithIdInDTO {
+
+    @NotNull(message = "Customer ID must not be null")
+    @Min(value = 1, message = "Customer ID must be a positive number")
+    private Long customerId;
 
     @NotBlank(message = "Password cannot be empty")
     private String password;

@@ -70,16 +70,4 @@ public class GlobalExceptionHandler {
     }
 
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<Map<String, Object>> globalExceptionHandler(Exception ex) {
-//        String userMessage = "Sorry, an unexpected error has occurred. Please try again later.";
-//
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-//        response.put("message", userMessage);
-//        response.put("error", ex.getMessage());
-//
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-//    }
-
 }

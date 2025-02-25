@@ -2,6 +2,7 @@ package ec.kgalarza.bank.controller;
 
 import ec.kgalarza.bank.dto.CustomerInDTO;
 import ec.kgalarza.bank.dto.CustomerOutDTO;
+import ec.kgalarza.bank.dto.CustomerWithIdInDTO;
 import ec.kgalarza.bank.handler.CustomerHandler;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<CustomerOutDTO> update(@Valid @RequestBody CustomerInDTO customerInDTO) {
-        return new ResponseEntity<>(customerHandler.update(customerInDTO), HttpStatus.CREATED);
+    public ResponseEntity<CustomerOutDTO> update(@Valid @RequestBody CustomerWithIdInDTO customerInDTO) {
+        return new ResponseEntity<>(customerHandler.update(customerInDTO), HttpStatus.OK);
     }
 }

@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import ec.kgalarza.bank.dto.CustomerInDTO;
 import ec.kgalarza.bank.dto.CustomerOutDTO;
+import ec.kgalarza.bank.dto.CustomerWithIdInDTO;
 import ec.kgalarza.bank.handler.CustomerHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ public class CustomerControllerTest {
 
     private CustomerOutDTO customerOutDTO;
     private CustomerInDTO customerInDTO;
+    private CustomerWithIdInDTO customerWithIdInDTO;
 
     @BeforeEach
     void setUp() {
@@ -55,6 +57,17 @@ public class CustomerControllerTest {
         customerInDTO.setPhone("5551234567");
         customerInDTO.setPassword("securePass");
         customerInDTO.setStatus(true);
+
+        customerWithIdInDTO = new CustomerWithIdInDTO();
+        customerWithIdInDTO.setCustomerId(1L);
+        customerWithIdInDTO.setName("John Doe");
+        customerWithIdInDTO.setGender("Male");
+        customerWithIdInDTO.setAge(30);
+        customerWithIdInDTO.setIdentification("123456789");
+        customerWithIdInDTO.setAddress("123 Main St");
+        customerWithIdInDTO.setPhone("5551234567");
+        customerWithIdInDTO.setPassword("securePass");
+        customerWithIdInDTO.setStatus(true);
     }
 
     @Test
@@ -101,15 +114,15 @@ public class CustomerControllerTest {
 
     @Test
     void whenUpdate_thenReturnUpdatedCustomer() {
-        when(customerHandler.save(any(CustomerInDTO.class))).thenReturn(customerOutDTO);
+        when(customerHandler.update(any(CustomerWithIdInDTO.class))).thenReturn(customerOutDTO);
 
-        ResponseEntity<CustomerOutDTO> response = customerController.update(customerInDTO);
+        ResponseEntity<CustomerOutDTO> response = customerController.update(customerWithIdInDTO);
 
         assertNotNull(response);
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("John Doe", response.getBody().getName());
 
-        verify(customerHandler, times(1)).save(any(CustomerInDTO.class));
+        verify(customerHandler, times(1)).update(any(CustomerWithIdInDTO.class));
     }
 
 

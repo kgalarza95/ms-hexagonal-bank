@@ -4,8 +4,8 @@ import ec.kgalarza.bank.FindByIdCustomerUseCase;
 import ec.kgalarza.bank.UpdateCustomerUseCase;
 import ec.kgalarza.bank.dto.CustomerInDTO;
 import ec.kgalarza.bank.dto.CustomerOutDTO;
+import ec.kgalarza.bank.dto.CustomerWithIdInDTO;
 import ec.kgalarza.bank.entity.Customer;
-import ec.kgalarza.bank.mapper.CustomerMapper;
 import ec.kgalarza.bank.FindCustomerUseCase;
 import ec.kgalarza.bank.SaveCustomerUseCase;
 import ec.kgalarza.bank.mapper.ICustomerMapper;
@@ -35,6 +35,7 @@ public class CustomerHandler {
                 .collect(Collectors.toList());
     }
 
+
     public CustomerOutDTO findById(Long id) {
         Customer customer = findByIdCustomerUseCase.execute(id);
         return customer != null ? ICustomerMapper.INSTANCE.toOutDTO(customer) : null;
@@ -45,7 +46,7 @@ public class CustomerHandler {
         return ICustomerMapper.INSTANCE.toOutDTO(saveCustomerUseCase.execute(customer));
     }
 
-    public CustomerOutDTO update(CustomerInDTO customerInDTO) {
+    public CustomerOutDTO update(CustomerWithIdInDTO customerInDTO) {
         Customer customer = ICustomerMapper.INSTANCE.toDomain(customerInDTO);
         return ICustomerMapper.INSTANCE.toOutDTO(updateCustomerUseCase.execute(customer));
     }
