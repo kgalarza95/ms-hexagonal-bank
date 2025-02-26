@@ -10,22 +10,22 @@ import java.util.function.Supplier;
 
 public class FindReportUseCase {
 
-    private final ITransactionRepositoryGateway ITransactionRepositoryGateway;
+    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
 
-    public FindReportUseCase(ITransactionRepositoryGateway ITransactionRepositoryGateway) {
-        this.ITransactionRepositoryGateway = ITransactionRepositoryGateway;
+    public FindReportUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway) {
+        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
     }
 
     public List<AccountStatementReport> getAccountStatementReport(LocalDateTime startDate, LocalDateTime endDate) {
-        return getNonEmptyList(() -> ITransactionRepositoryGateway.getAccountStatementReport(startDate, endDate), "No account statements found for the given period");
+        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAccountStatementReport(startDate, endDate), "No account statements found for the given period");
     }
 
     public List<AccountStatementReport> getAllAccountStatements() {
-        return getNonEmptyList(() -> ITransactionRepositoryGateway.getAllAccountStatements(), "No account statements found");
+        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAllAccountStatements(), "No account statements found");
     }
 
     public List<AccountStatementReport> getAccountStatementReportByUser(LocalDateTime startDate, LocalDateTime endDate, Long userId) {
-        return getNonEmptyList(() -> ITransactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
+        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
     }
 
     private List<AccountStatementReport> getNonEmptyList(Supplier<List<AccountStatementReport>> supplier, String errorMessage) {

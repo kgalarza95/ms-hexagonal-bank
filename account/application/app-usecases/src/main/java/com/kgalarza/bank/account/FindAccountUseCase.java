@@ -10,14 +10,14 @@ import java.util.Optional;
 
 public class FindAccountUseCase {
 
-    IAccountRepositoryGateway IAccountRepositoryGateway;
+    private final IAccountRepositoryGateway iAccountRepositoryGateway;
 
-    public FindAccountUseCase(IAccountRepositoryGateway IAccountRepositoryGateway) {
-        this.IAccountRepositoryGateway = IAccountRepositoryGateway;
+    public FindAccountUseCase(IAccountRepositoryGateway iAccountRepositoryGateway) {
+        this.iAccountRepositoryGateway = iAccountRepositoryGateway;
     }
 
     public List<Account> execute() {
-        List<Account> accounts = IAccountRepositoryGateway.findAll();
+        List<Account> accounts = iAccountRepositoryGateway.findAll();
         return Optional.ofNullable(accounts)
                 .filter(list -> !list.isEmpty())
                 .orElseThrow(() -> new ResourceNotFoundException("No accounts found"));

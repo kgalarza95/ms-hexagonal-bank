@@ -17,14 +17,14 @@ import java.util.Optional;
 
 public class SaveTransactionUseCase {
 
-    ITransactionRepositoryGateway ITransactionRepositoryGateway;
-    FindAccountUseCase findAccountUseCases;
-    FindByIdAccountUseCase  findByIdAccountUseCase;
-    SaveAccountUseCase saveAccountUseCases;
-    ILogBusMessageGateway iLogBusMessageGateway;
+    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
+    private final FindAccountUseCase findAccountUseCases;
+    private final FindByIdAccountUseCase  findByIdAccountUseCase;
+    private final SaveAccountUseCase saveAccountUseCases;
+    private final ILogBusMessageGateway iLogBusMessageGateway;
 
-    public SaveTransactionUseCase(com.kgalarza.bank.gateway.ITransactionRepositoryGateway ITransactionRepositoryGateway, FindAccountUseCase findAccountUseCases, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCases, ILogBusMessageGateway iLogBusMessageGateway) {
-        this.ITransactionRepositoryGateway = ITransactionRepositoryGateway;
+    public SaveTransactionUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway, FindAccountUseCase findAccountUseCases, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCases, ILogBusMessageGateway iLogBusMessageGateway) {
+        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
         this.findAccountUseCases = findAccountUseCases;
         this.findByIdAccountUseCase = findByIdAccountUseCase;
         this.saveAccountUseCases = saveAccountUseCases;
@@ -46,7 +46,7 @@ public class SaveTransactionUseCase {
                 : "Deposit of " + entidad.getTransactionAmount());
         entidad.setTransactionDate(LocalDateTime.now());
 
-        Transaction savedTransaction = ITransactionRepositoryGateway.save(entidad);
+        Transaction savedTransaction = iTransactionRepositoryGateway.save(entidad);
 
         account.setOnlineBalance(finalBalance);
         saveAccountUseCases.execute(account);

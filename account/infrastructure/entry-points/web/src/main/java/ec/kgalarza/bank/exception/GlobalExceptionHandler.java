@@ -1,7 +1,6 @@
 package ec.kgalarza.bank.exception;
 
 import com.kgalarza.bank.exception.GeneralAccountValidationException;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

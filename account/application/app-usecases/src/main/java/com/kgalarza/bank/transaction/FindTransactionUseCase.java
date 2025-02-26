@@ -8,14 +8,14 @@ import java.util.List;
 
 public class FindTransactionUseCase {
 
-    ITransactionRepositoryGateway ITransactionRepositoryGateway;
+    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
 
-    public FindTransactionUseCase(ITransactionRepositoryGateway ITransactionRepositoryGateway) {
-        this.ITransactionRepositoryGateway = ITransactionRepositoryGateway;
+    public FindTransactionUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway) {
+        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
     }
 
     public List<Transaction> execute() {
-        return ITransactionRepositoryGateway.findAll();
+        return iTransactionRepositoryGateway.findAll();
     }
 
 }
