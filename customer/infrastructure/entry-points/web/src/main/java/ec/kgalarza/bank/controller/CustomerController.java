@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("v1/customer")
 public class CustomerController {
 
-    CustomerHandler customerHandler;
+    private final CustomerHandler customerHandler;
 
     public CustomerController(CustomerHandler customerHandler) {
         this.customerHandler = customerHandler;

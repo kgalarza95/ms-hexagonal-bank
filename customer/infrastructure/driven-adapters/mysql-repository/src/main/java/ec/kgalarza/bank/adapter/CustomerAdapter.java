@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public class CustomerAdapter implements CustomerRepositoryGateway {
 
-    ICustomerRepository iCustomerRepository;
+    private final ICustomerRepository iCustomerRepository;
 
     public CustomerAdapter(ICustomerRepository iCustomerRepository) {
         this.iCustomerRepository = iCustomerRepository;
