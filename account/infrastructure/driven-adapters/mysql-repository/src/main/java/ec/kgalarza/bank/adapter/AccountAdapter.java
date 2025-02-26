@@ -33,6 +33,13 @@ public class AccountAdapter implements IAccountRepositoryGateway {
     }
 
     @Override
+    public Account findByAccountNumber(String accountNumber) {
+        return iAccountRepository.findByAccountNumber(accountNumber)
+                .map(AccountRepoMapper::toDTO)
+                .orElse(null);
+    }
+
+    @Override
     public List<Account> findAll() {
         return iAccountRepository.findAll()
                 .stream()

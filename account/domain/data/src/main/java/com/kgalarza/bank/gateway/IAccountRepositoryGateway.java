@@ -8,5 +8,6 @@ public interface IAccountRepositoryGateway {
 
     Account save(Account account);
     Account findById(Long id);
+    Account findByAccountNumber(String accountNumber);
     List<Account> findAll();
 }
