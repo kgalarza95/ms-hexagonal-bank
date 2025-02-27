@@ -11,38 +11,38 @@ import java.util.Optional;
 @Repository
 public class CustomerAdapter implements ICustomerRepositoryGateway {
 
-    private final ICustomerRepository iCustomerRepository;
+    private final ICustomerRepository customerRepository;
 
-    public CustomerAdapter(ICustomerRepository iCustomerRepository) {
-        this.iCustomerRepository = iCustomerRepository;
+    public CustomerAdapter(ICustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     @Override
     public Customer save(Customer customer) {
         return Optional.of(customer)
                 .map(CustomerRepoMapper::toEntity)
-                .map(iCustomerRepository::save)
+                .map(customerRepository::save)
                 .map(CustomerRepoMapper::toDomain)
                 .orElseThrow(null);
     }
 
     @Override
     public Customer findById(Long id) {
-        return iCustomerRepository.findById(id)
+        return customerRepository.findById(id)
                 .map(CustomerRepoMapper::toDomain)
                 .orElse(null);
     }
 
     @Override
     public Customer findByIdentification(String identification) {
-        return iCustomerRepository.findByIdentification(identification)
+        return customerRepository.findByIdentification(identification)
                 .map(CustomerRepoMapper::toDomain)
                 .orElse(null);
     }
 
     @Override
     public List<Customer> findAll() {
-        return iCustomerRepository.findAll().stream()
+        return customerRepository.findAll().stream()
                 .map(CustomerRepoMapper::toDomain)
                 .toList();
     }

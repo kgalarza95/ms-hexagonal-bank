@@ -7,22 +7,21 @@ import ec.kgalarza.bank.service.IEncryptionService;
 
 public class SaveCustomerUseCase {
 
-    private final ICustomerRepositoryGateway ICustomerRepositoryGateway;
-    private final IEncryptionService iEncryptionService;
+    private final ICustomerRepositoryGateway customerRepositoryGateway;
+    private final IEncryptionService encryptionService;
 
-    public SaveCustomerUseCase(ICustomerRepositoryGateway ICustomerRepositoryGateway, IEncryptionService iEncryptionService) {
-        this.ICustomerRepositoryGateway = ICustomerRepositoryGateway;
-        this.iEncryptionService = iEncryptionService;
+    public SaveCustomerUseCase(ICustomerRepositoryGateway customerRepositoryGateway, IEncryptionService encryptionService) {
+        this.customerRepositoryGateway = customerRepositoryGateway;
+        this.encryptionService = encryptionService;
     }
 
-    public Customer execute(Customer entidad) {
-        Customer customerExists = ICustomerRepositoryGateway.findByIdentification(entidad.getIdentification());
+    public Customer execute(Customer customer) {
+        Customer customerExists = customerRepositoryGateway.findByIdentification(customer.getIdentification());
         if (customerExists != null){
-            throw new CustomerAlreadyExistsException("The customer with identification " + entidad.getIdentification() + " already exists.");
+            throw new CustomerAlreadyExistsException("The customer with identification " + customer.getIdentification() + " already exists.");
         }
-        entidad.setPassword(iEncryptionService.encrypt(entidad.getPassword()));
-        return ICustomerRepositoryGateway.save(entidad);
+        customer.setPassword(encryptionService.encrypt(customer.getPassword()));
+        return customerRepositoryGateway.save(customer);
     }
-
-
 }
+

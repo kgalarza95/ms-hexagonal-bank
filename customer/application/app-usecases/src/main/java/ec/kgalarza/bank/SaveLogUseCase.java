@@ -5,13 +5,14 @@ import ec.kgalarza.bank.gateway.ILogRepositoryGateway;
 
 public class SaveLogUseCase {
 
-    private final ILogRepositoryGateway iLogRepositoryGateway;
+    private final ILogRepositoryGateway logRepositoryGateway;
 
-    public SaveLogUseCase(ILogRepositoryGateway iLogRepositoryGateway) {
-        this.iLogRepositoryGateway = iLogRepositoryGateway;
+    public SaveLogUseCase(ILogRepositoryGateway logRepositoryGateway) {
+        this.logRepositoryGateway = logRepositoryGateway;
     }
 
     public Log execute(Log log) {
-        return iLogRepositoryGateway.save(log);
+        return logRepositoryGateway.save(log);
     }
 }
+

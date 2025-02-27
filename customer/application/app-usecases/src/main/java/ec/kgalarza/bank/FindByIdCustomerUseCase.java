@@ -6,14 +6,14 @@ import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 
 public class FindByIdCustomerUseCase {
 
-    private final ICustomerRepositoryGateway ICustomerRepositoryGateway;
+    private final ICustomerRepositoryGateway customerRepositoryGateway;
 
-    public FindByIdCustomerUseCase(ICustomerRepositoryGateway ICustomerRepositoryGateway) {
-        this.ICustomerRepositoryGateway = ICustomerRepositoryGateway;
+    public FindByIdCustomerUseCase(ICustomerRepositoryGateway customerRepositoryGateway) {
+        this.customerRepositoryGateway = customerRepositoryGateway;
     }
 
     public Customer execute(Long id) {
-        Customer customer = ICustomerRepositoryGateway.findById(id);
+        Customer customer = customerRepositoryGateway.findById(id);
         if (customer == null) {
             throw new ResourceNotFoundException("Customer with id " + id + " not found");
         }

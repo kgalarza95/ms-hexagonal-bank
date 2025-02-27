@@ -8,17 +8,18 @@ import java.util.List;
 
 public class FindCustomerUseCase {
 
-    private final ICustomerRepositoryGateway ICustomerRepositoryGateway;
+    private final ICustomerRepositoryGateway customerRepositoryGateway;
 
-    public FindCustomerUseCase(ICustomerRepositoryGateway ICustomerRepositoryGateway) {
-        this.ICustomerRepositoryGateway = ICustomerRepositoryGateway;
+    public FindCustomerUseCase(ICustomerRepositoryGateway customerRepositoryGateway) {
+        this.customerRepositoryGateway = customerRepositoryGateway;
     }
 
     public List<Customer> execute() {
-        List<Customer> customers = ICustomerRepositoryGateway.findAll();
+        List<Customer> customers = customerRepositoryGateway.findAll();
         if (customers == null || customers.isEmpty()) {
             throw new ResourceNotFoundException("No customers found");
         }
         return customers;
     }
 }
+

@@ -6,19 +6,18 @@ import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 
 public class UpdateCustomerUseCase {
 
-    private final ICustomerRepositoryGateway ICustomerRepositoryGateway;
+    private final ICustomerRepositoryGateway customerRepositoryGateway;
 
-    public UpdateCustomerUseCase(ICustomerRepositoryGateway ICustomerRepositoryGateway) {
-        this.ICustomerRepositoryGateway = ICustomerRepositoryGateway;
+    public UpdateCustomerUseCase(ICustomerRepositoryGateway customerRepositoryGateway) {
+        this.customerRepositoryGateway = customerRepositoryGateway;
     }
 
     public Customer execute(Customer entidad) {
-        Customer customerExists = ICustomerRepositoryGateway.findById(entidad.getCustomerId());
+        Customer customerExists = customerRepositoryGateway.findById(entidad.getCustomerId());
         if (customerExists == null) {
             throw new ResourceNotFoundException("Customer with id " + entidad.getCustomerId() + " not found");
         }
-        return ICustomerRepositoryGateway.save(entidad);
+        return customerRepositoryGateway.save(entidad);
     }
-
-
 }
+

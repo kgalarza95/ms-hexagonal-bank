@@ -11,17 +11,17 @@ import java.util.Optional;
 @Repository
 public class LogAdapter implements ILogRepositoryGateway {
 
-    private final ILogRepository iLogRepository;
+    private final ILogRepository logRepository;
 
-    public LogAdapter(ILogRepository iLogRepository) {
-        this.iLogRepository = iLogRepository;
+    public LogAdapter(ILogRepository logRepository) {
+        this.logRepository = logRepository;
     }
 
     @Override
     public Log save(Log log) {
         return Optional.of(log)
                 .map(LogRepoMapper::toEntity)
-                .map(iLogRepository::save)
+                .map(logRepository::save)
                 .map(LogRepoMapper::toDomain)
                 .orElseThrow(null);
     }
