@@ -12,6 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.math.BigDecimal;
+
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,7 +34,7 @@ public class SaveAccountUseCaseTest {
 
     @Test
     void save_ShouldReturnSavedAccount_AndSendLogMessage() {
-        Account accountToSave = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
+        Account accountToSave = new Account(1L, "123456", "Checking", BigDecimal.valueOf(1000.0), true, 101L);
         Mockito.when(IAccountRepositoryGateway.save(accountToSave)).thenReturn(accountToSave);
 
         Account result = saveAccountUseCase.execute(accountToSave);

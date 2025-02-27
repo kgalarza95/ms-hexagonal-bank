@@ -12,6 +12,8 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,14 +34,14 @@ public class AccountControllerTest {
         accountOutDTO.setId(1L);
         accountOutDTO.setAccountNumber("123456");
         accountOutDTO.setAccountType("SAVINGS");
-        accountOutDTO.setOnlineBalance(1000.0);
+        accountOutDTO.setOnlineBalance(BigDecimal.valueOf(1000.0));
         accountOutDTO.setStatus(true);
         accountOutDTO.setCustomerId(1L);
 
         accountInDTO = new AccountInDTO();
         accountInDTO.setAccountNumber("123456");
         accountInDTO.setAccountType("SAVINGS");
-        accountInDTO.setOnlineBalance(1000.0);
+        accountInDTO.setOnlineBalance(BigDecimal.valueOf(1000.0));
         accountInDTO.setStatus(true);
         accountInDTO.setCustomerId(1L);
     }

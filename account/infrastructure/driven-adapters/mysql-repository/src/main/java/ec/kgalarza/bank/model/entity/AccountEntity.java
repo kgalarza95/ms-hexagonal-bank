@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class AccountEntity {
     private String accountNumber;
     @Column(nullable = false)
     private String accountType;
-    private double onlineBalance;
+    private BigDecimal onlineBalance;
     private boolean status;
     private Long customerId;
     @OneToMany(mappedBy = "account")

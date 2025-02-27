@@ -12,6 +12,7 @@ import com.kgalarza.bank.gateway.ILogBusMessageGateway;
 import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -33,14 +34,14 @@ public class SaveTransactionUseCase {
         Account account = Optional.ofNullable(findByIdAccountUseCase.execute(entidad.getAccountId()))
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found with id: " + entidad.getAccountId()));
 
-        double finalBalance = Optional.of(account.getOnlineBalance() + entidad.getTransactionAmount())
-                .filter(balance -> balance >= 0)
+        BigDecimal finalBalance = Optional.of(account.getOnlineBalance().add(entidad.getTransactionAmount()))
+                .filter(balance -> balance.compareTo(BigDecimal.ZERO) >= 0)
                 .orElseThrow(() -> new GeneralAccountValidationException("Balance not available"));
 
         entidad.setInitialBalance(account.getOnlineBalance());
         entidad.setAvailableBalance(finalBalance);
-        entidad.setTransactionDescription(entidad.getTransactionAmount() < 0
-                ? "Withdrawal of " + (entidad.getTransactionAmount() * -1)
+        entidad.setTransactionDescription(entidad.getTransactionAmount().compareTo(BigDecimal.ZERO) < 0
+                ? "Withdrawal of " + entidad.getTransactionAmount().abs()
                 : "Deposit of " + entidad.getTransactionAmount());
         entidad.setTransactionDate(LocalDateTime.now());
 
@@ -52,6 +53,7 @@ public class SaveTransactionUseCase {
         logBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
         return savedTransaction;
     }
+
 
 
 }

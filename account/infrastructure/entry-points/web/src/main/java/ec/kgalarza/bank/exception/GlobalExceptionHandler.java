@@ -1,5 +1,6 @@
 package ec.kgalarza.bank.exception;
 
+import com.kgalarza.bank.exception.AccountAlreadyExistsException;
 import com.kgalarza.bank.exception.GeneralAccountValidationException;
 import com.kgalarza.bank.exception.ResourceNotFoundException;
 import jakarta.validation.ConstraintViolationException;
@@ -56,6 +57,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(GeneralAccountValidationException.class)
     public ResponseEntity<Map<String, Object>> handleGeneralAccountValidationException(GeneralAccountValidationException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(AccountAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleAccountAlreadyExistsException(AccountAlreadyExistsException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.BAD_REQUEST.value());
         response.put("message", ex.getMessage());

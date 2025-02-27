@@ -1,6 +1,7 @@
 package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
+import com.kgalarza.bank.exception.ResourceNotFoundException;
 import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class FindAccountUseCaseTest {
 
     @Test
     void findAll_ShouldReturnListOfAccounts() {
-        Account account1 = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
-        Account account2 = new Account(2L, "654321", "Savings", 2500.0, false, 102L);
+        Account account1 = new Account(1L, "123456", "Checking", BigDecimal.valueOf(1000.0), true, 101L);
+        Account account2 = new Account(2L, "654321", "Savings", BigDecimal.valueOf(2500.0), false, 102L);
         List<Account> accounts = Arrays.asList(account1, account2);
         Mockito.when(IAccountRepositoryGateway.findAll()).thenReturn(accounts);
 
@@ -43,7 +45,7 @@ public class FindAccountUseCaseTest {
 
     @Test
     void findById_ShouldReturnAccount_WhenAccountExists() {
-        Account account = new Account(1L, "123456", "Checking", 1000.0, true, 101L);
+        Account account = new Account(1L, "123456", "Checking", BigDecimal.valueOf(1000.0), true, 101L);
         Mockito.when(IAccountRepositoryGateway.findById(1L)).thenReturn(account);
 
         Account result = findByIdAccountUseCase.execute(1L);
@@ -53,12 +55,13 @@ public class FindAccountUseCaseTest {
     }
 
     @Test
-    void findById_ShouldReturnNull_WhenAccountDoesNotExist() {
+    void findById_ShouldThrowResourceNotFoundException_WhenAccountDoesNotExist() {
         Mockito.when(IAccountRepositoryGateway.findById(99L)).thenReturn(null);
 
-        Account result = findByIdAccountUseCase.execute(99L);
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            findByIdAccountUseCase.execute(99L);
+        });
 
-        Assertions.assertNull(result);
         Mockito.verify(IAccountRepositoryGateway).findById(99L);
     }
 

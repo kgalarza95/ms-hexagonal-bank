@@ -1,14 +1,15 @@
 package com.kgalarza.bank.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Transaction {
 
     private Long id;
     private LocalDateTime transactionDate;
-    private double initialBalance;
-    private double transactionAmount;
-    private double availableBalance;
+    private BigDecimal initialBalance;
+    private BigDecimal transactionAmount;
+    private BigDecimal availableBalance;
     private String transactionDescription;
     private Long accountId;
     private Account account;
@@ -32,27 +33,27 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
-    public double getInitialBalance() {
+    public BigDecimal getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(double initialBalance) {
+    public void setInitialBalance(BigDecimal initialBalance) {
         this.initialBalance = initialBalance;
     }
 
-    public double getTransactionAmount() {
+    public BigDecimal getTransactionAmount() {
         return transactionAmount;
     }
 
-    public void setTransactionAmount(double transactionAmount) {
+    public void setTransactionAmount(BigDecimal transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
-    public double getAvailableBalance() {
+    public BigDecimal getAvailableBalance() {
         return availableBalance;
     }
 
-    public void setAvailableBalance(double availableBalance) {
+    public void setAvailableBalance(BigDecimal availableBalance) {
         this.availableBalance = availableBalance;
     }
 

@@ -1,5 +1,6 @@
 package com.kgalarza.bank.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class AccountStatementReport {
@@ -8,16 +9,16 @@ public class AccountStatementReport {
     private String customerName;
     private String accountNumber;
     private String accountType;
-    private double initialBalance;
-    private double transactionAmount;
-    private double availableBalance;
+    private BigDecimal initialBalance;
+    private BigDecimal transactionAmount;
+    private BigDecimal availableBalance;
     private String transactionDescription;
     private Boolean accountStatus;
 
     public AccountStatementReport() {
     }
 
-    public AccountStatementReport(LocalDateTime transactionDate, String customerName, String accountNumber, String accountType, double initialBalance, double transactionAmount, double availableBalance, String transactionDescription, Boolean accountStatus) {
+    public AccountStatementReport(LocalDateTime transactionDate, String customerName, String accountNumber, String accountType, BigDecimal initialBalance, BigDecimal transactionAmount, BigDecimal availableBalance, String transactionDescription, Boolean accountStatus) {
         this.transactionDate = transactionDate;
         this.customerName = customerName;
         this.accountNumber = accountNumber;
@@ -61,27 +62,27 @@ public class AccountStatementReport {
         this.accountType = accountType;
     }
 
-    public double getInitialBalance() {
+    public BigDecimal getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(double initialBalance) {
+    public void setInitialBalance(BigDecimal initialBalance) {
         this.initialBalance = initialBalance;
     }
 
-    public double getTransactionAmount() {
+    public BigDecimal getTransactionAmount() {
         return transactionAmount;
     }
 
-    public void setTransactionAmount(double transactionAmount) {
+    public void setTransactionAmount(BigDecimal transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
-    public double getAvailableBalance() {
+    public BigDecimal getAvailableBalance() {
         return availableBalance;
     }
 
-    public void setAvailableBalance(double availableBalance) {
+    public void setAvailableBalance(BigDecimal availableBalance) {
         this.availableBalance = availableBalance;
     }
 

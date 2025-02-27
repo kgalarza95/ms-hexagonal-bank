@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -26,7 +28,7 @@ public class AccountRepositoryTest {
         AccountEntity account = new AccountEntity();
         account.setAccountNumber("123456");
         account.setAccountType("Checking");
-        account.setOnlineBalance(1000.0);
+        account.setOnlineBalance(BigDecimal.valueOf(1000.0));
         account.setStatus(true);
         account.setCustomerId(1L);
         accountRepository.save(account);

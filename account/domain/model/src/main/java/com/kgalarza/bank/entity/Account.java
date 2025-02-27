@@ -1,5 +1,6 @@
 package com.kgalarza.bank.entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Account {
@@ -7,7 +8,7 @@ public class Account {
     private Long id;
     private String accountNumber;
     private String accountType;
-    private double onlineBalance;
+    private BigDecimal onlineBalance;
     private boolean status;
     private Long customerId;
     private List<Transaction> transactions;
@@ -15,7 +16,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long id, String accountNumber, String accountType, double onlineBalance, boolean status, Long customerId) {
+    public Account(Long id, String accountNumber, String accountType, BigDecimal onlineBalance, boolean status, Long customerId) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
@@ -24,7 +25,7 @@ public class Account {
         this.customerId = customerId;
     }
 
-    public Account(Long id, String accountNumber, String accountType, double onlineBalance, boolean status, Long customerId, List<Transaction> transactions) {
+    public Account(Long id, String accountNumber, String accountType, BigDecimal onlineBalance, boolean status, Long customerId, List<Transaction> transactions) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
@@ -58,11 +59,11 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public double getOnlineBalance() {
+    public BigDecimal getOnlineBalance() {
         return onlineBalance;
     }
 
-    public void setOnlineBalance(double onlineBalance) {
+    public void setOnlineBalance(BigDecimal onlineBalance) {
         this.onlineBalance = onlineBalance;
     }
 

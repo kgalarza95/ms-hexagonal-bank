@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -31,9 +33,9 @@ public class TransactionEntity {
     @LastModifiedDate
     private LocalDateTime transactionDate;
 
-    private double initialBalance;
-    private double transactionAmount;
-    private double availableBalance;
+    private BigDecimal initialBalance;
+    private BigDecimal transactionAmount;
+    private BigDecimal availableBalance;
     private String transactionDescription;
 
     @ManyToOne
