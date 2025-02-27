@@ -9,14 +9,14 @@ import java.util.List;
 
 public class FindTransactionUseCase {
 
-    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
+    private final ITransactionRepositoryGateway transactionRepositoryGateway;
 
-    public FindTransactionUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway) {
-        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
+    public FindTransactionUseCase(ITransactionRepositoryGateway transactionRepositoryGateway) {
+        this.transactionRepositoryGateway = transactionRepositoryGateway;
     }
 
     public List<Transaction> execute() {
-        List<Transaction> transactions = iTransactionRepositoryGateway.findAll();
+        List<Transaction> transactions = transactionRepositoryGateway.findAll();
         if (transactions == null || transactions.isEmpty()) {
             throw new ResourceNotFoundException("No transactions found");
         }

@@ -12,36 +12,36 @@ import java.util.List;
 @Service
 public class AccountAdapter implements IAccountRepositoryGateway {
 
-    IAccountRepository iAccountRepository;
+    private final IAccountRepository accountRepository;
 
-    public AccountAdapter(IAccountRepository iAccountRepository) {
-        this.iAccountRepository = iAccountRepository;
+    public AccountAdapter(IAccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @Override
     public Account save(Account account) {
         AccountEntity entity = AccountRepoMapper.toEntity(account);
-        AccountEntity savedEntity = iAccountRepository.save(entity);
+        AccountEntity savedEntity = accountRepository.save(entity);
         return AccountRepoMapper.toDTO(savedEntity);
     }
 
     @Override
     public Account findById(Long id) {
-        return iAccountRepository.findById(id)
+        return accountRepository.findById(id)
                 .map(AccountRepoMapper::toDTO)
                 .orElse(null);
     }
 
     @Override
     public Account findByAccountNumber(String accountNumber) {
-        return iAccountRepository.findByAccountNumber(accountNumber)
+        return accountRepository.findByAccountNumber(accountNumber)
                 .map(AccountRepoMapper::toDTO)
                 .orElse(null);
     }
 
     @Override
     public List<Account> findAll() {
-        return iAccountRepository.findAll()
+        return accountRepository.findAll()
                 .stream()
                 .map(AccountRepoMapper::toDTO)
                 .toList();

@@ -10,22 +10,22 @@ import java.util.function.Supplier;
 
 public class FindReportUseCase {
 
-    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
+    private final ITransactionRepositoryGateway transactionRepositoryGateway;
 
-    public FindReportUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway) {
-        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
+    public FindReportUseCase(ITransactionRepositoryGateway transactionRepositoryGateway) {
+        this.transactionRepositoryGateway = transactionRepositoryGateway;
     }
 
     public List<AccountStatementReport> getAccountStatementReport(LocalDateTime startDate, LocalDateTime endDate) {
-        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAccountStatementReport(startDate, endDate), "No account statements found for the given period");
+        return getNonEmptyList(() -> transactionRepositoryGateway.getAccountStatementReport(startDate, endDate), "No account statements found for the given period");
     }
 
     public List<AccountStatementReport> getAllAccountStatements() {
-        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAllAccountStatements(), "No account statements found");
+        return getNonEmptyList(() -> transactionRepositoryGateway.getAllAccountStatements(), "No account statements found");
     }
 
     public List<AccountStatementReport> getAccountStatementReportByUser(LocalDateTime startDate, LocalDateTime endDate, Long userId) {
-        return getNonEmptyList(() -> iTransactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
+        return getNonEmptyList(() -> transactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
     }
 
     private List<AccountStatementReport> getNonEmptyList(Supplier<List<AccountStatementReport>> supplier, String errorMessage) {

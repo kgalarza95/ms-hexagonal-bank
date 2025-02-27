@@ -7,14 +7,14 @@ import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 
 public class FindByIdTransactionUseCase {
 
-    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
+    private final ITransactionRepositoryGateway transactionRepositoryGateway;
 
-    public FindByIdTransactionUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway) {
-        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
+    public FindByIdTransactionUseCase(ITransactionRepositoryGateway transactionRepositoryGateway) {
+        this.transactionRepositoryGateway = transactionRepositoryGateway;
     }
 
     public Transaction execute(Long id) {
-        Transaction transaction = iTransactionRepositoryGateway.findById(id);
+        Transaction transaction = transactionRepositoryGateway.findById(id);
         if (transaction == null) {
             throw new ResourceNotFoundException("Transaction with id " + id + " not found");
         }

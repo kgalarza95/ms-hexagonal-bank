@@ -10,21 +10,21 @@ import java.time.LocalDateTime;
 
 public class SaveAccountUseCase {
 
-    private final IAccountRepositoryGateway iAccountRepositoryGateway;
-    private final ILogBusMessageGateway iLogBusMessageGateway;
+    private final IAccountRepositoryGateway accountRepositoryGateway;
+    private final ILogBusMessageGateway logBusMessageGateway;
 
-    public SaveAccountUseCase(IAccountRepositoryGateway iAccountRepositoryGateway, ILogBusMessageGateway iLogBusMessageGateway) {
-        this.iAccountRepositoryGateway = iAccountRepositoryGateway;
-        this.iLogBusMessageGateway = iLogBusMessageGateway;
+    public SaveAccountUseCase(IAccountRepositoryGateway accountRepositoryGateway, ILogBusMessageGateway logBusMessageGateway) {
+        this.accountRepositoryGateway = accountRepositoryGateway;
+        this.logBusMessageGateway = logBusMessageGateway;
     }
 
     public Account execute(Account entidad) {
-        Account account = iAccountRepositoryGateway.findByAccountNumber(entidad.getAccountNumber());
+        Account account = accountRepositoryGateway.findByAccountNumber(entidad.getAccountNumber());
         if (account != null){
             throw new AccountAlreadyExistsException("The account with number " + entidad.getAccountNumber()+ " already exists.");
         }
-        iLogBusMessageGateway.sendMessage(new Log("Account created: "+entidad, LocalDateTime.now()));
-        return iAccountRepositoryGateway.save(entidad);
+        logBusMessageGateway.sendMessage(new Log("Account created: "+entidad, LocalDateTime.now()));
+        return accountRepositoryGateway.save(entidad);
     }
 
 }

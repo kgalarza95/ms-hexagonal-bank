@@ -17,18 +17,16 @@ import java.util.Optional;
 
 public class SaveTransactionUseCase {
 
-    private final ITransactionRepositoryGateway iTransactionRepositoryGateway;
-    private final FindAccountUseCase findAccountUseCases;
+    private final ITransactionRepositoryGateway transactionRepositoryGateway;
     private final FindByIdAccountUseCase  findByIdAccountUseCase;
     private final SaveAccountUseCase saveAccountUseCases;
-    private final ILogBusMessageGateway iLogBusMessageGateway;
+    private final ILogBusMessageGateway logBusMessageGateway;
 
-    public SaveTransactionUseCase(ITransactionRepositoryGateway iTransactionRepositoryGateway, FindAccountUseCase findAccountUseCases, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCases, ILogBusMessageGateway iLogBusMessageGateway) {
-        this.iTransactionRepositoryGateway = iTransactionRepositoryGateway;
-        this.findAccountUseCases = findAccountUseCases;
+    public SaveTransactionUseCase(ITransactionRepositoryGateway transactionRepositoryGateway, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCases, ILogBusMessageGateway logBusMessageGateway) {
+        this.transactionRepositoryGateway = transactionRepositoryGateway;
         this.findByIdAccountUseCase = findByIdAccountUseCase;
         this.saveAccountUseCases = saveAccountUseCases;
-        this.iLogBusMessageGateway = iLogBusMessageGateway;
+        this.logBusMessageGateway = logBusMessageGateway;
     }
 
     public Transaction execute(Transaction entidad) {
@@ -46,12 +44,12 @@ public class SaveTransactionUseCase {
                 : "Deposit of " + entidad.getTransactionAmount());
         entidad.setTransactionDate(LocalDateTime.now());
 
-        Transaction savedTransaction = iTransactionRepositoryGateway.save(entidad);
+        Transaction savedTransaction = transactionRepositoryGateway.save(entidad);
 
         account.setOnlineBalance(finalBalance);
         saveAccountUseCases.execute(account);
 
-        iLogBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
+        logBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
         return savedTransaction;
     }
 

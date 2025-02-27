@@ -15,28 +15,28 @@ import java.util.List;
 @Service
 public class TransactionAdapter implements ITransactionRepositoryGateway {
 
-    ITransactionRepository iTransactionRepository;
+    private final ITransactionRepository transactionRepository;
 
-    public TransactionAdapter(ITransactionRepository iTransactionRepository) {
-        this.iTransactionRepository = iTransactionRepository;
+    public TransactionAdapter(ITransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
     }
 
     @Override
     public Transaction save(Transaction transaction) {
         TransactionEntity transactionEntity = TransactionRepoMapper.toEntity(transaction);
-        return TransactionRepoMapper.toDTO(iTransactionRepository.save(transactionEntity));
+        return TransactionRepoMapper.toDTO(transactionRepository.save(transactionEntity));
     }
 
     @Override
     public Transaction findById(Long id) {
-        return iTransactionRepository.findById(id)
+        return transactionRepository.findById(id)
                 .map(TransactionRepoMapper::toDTO)
                 .orElse(null);
     }
 
     @Override
     public List<Transaction> findAll() {
-        return iTransactionRepository.findAll()
+        return transactionRepository.findAll()
                 .stream()
                 .map(TransactionRepoMapper::toDTO)
                 .toList();
@@ -44,7 +44,7 @@ public class TransactionAdapter implements ITransactionRepositoryGateway {
 
     @Override
     public List<AccountStatementReport> getAccountStatementReport(LocalDateTime startDate, LocalDateTime endDate) {
-        return iTransactionRepository.getAccountStatementReport(startDate, endDate)
+        return transactionRepository.getAccountStatementReport(startDate, endDate)
                 .stream()
                 .map(ReportRepoMapper::toDomain)
                 .toList();
@@ -52,7 +52,7 @@ public class TransactionAdapter implements ITransactionRepositoryGateway {
 
     @Override
     public List<AccountStatementReport> getAllAccountStatements() {
-        return iTransactionRepository.getAllAccountStatements()
+        return transactionRepository.getAllAccountStatements()
                 .stream()
                 .map(ReportRepoMapper::toDomain)
                 .toList();
@@ -60,7 +60,7 @@ public class TransactionAdapter implements ITransactionRepositoryGateway {
 
     @Override
     public List<AccountStatementReport> getAccountStatementReportByUser(LocalDateTime startDate, LocalDateTime endDate, Long userId) {
-        return iTransactionRepository.getAccountStatementReportByUser(startDate, endDate, userId)
+        return transactionRepository.getAccountStatementReportByUser(startDate, endDate, userId)
                 .stream()
                 .map(ReportRepoMapper::toDomain)
                 .toList();
