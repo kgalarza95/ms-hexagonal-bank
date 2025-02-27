@@ -2,20 +2,18 @@ package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
 import ec.kgalarza.bank.exception.ResourceNotFoundException;
-import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
-
-import java.util.List;
+import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 
 public class FindByIdCustomerUseCase {
 
-    private final CustomerRepositoryGateway customerRepositoryGateway;
+    private final ICustomerRepositoryGateway ICustomerRepositoryGateway;
 
-    public FindByIdCustomerUseCase(CustomerRepositoryGateway customerRepositoryGateway) {
-        this.customerRepositoryGateway = customerRepositoryGateway;
+    public FindByIdCustomerUseCase(ICustomerRepositoryGateway ICustomerRepositoryGateway) {
+        this.ICustomerRepositoryGateway = ICustomerRepositoryGateway;
     }
 
     public Customer execute(Long id) {
-        Customer customer = customerRepositoryGateway.findById(id);
+        Customer customer = ICustomerRepositoryGateway.findById(id);
         if (customer == null) {
             throw new ResourceNotFoundException("Customer with id " + id + " not found");
         }

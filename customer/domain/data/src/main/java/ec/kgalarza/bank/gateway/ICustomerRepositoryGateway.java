@@ -4,7 +4,7 @@ import ec.kgalarza.bank.entity.Customer;
 
 import java.util.List;
 
-public interface CustomerRepositoryGateway {
+public interface ICustomerRepositoryGateway {
 
     Customer save(Customer customer);
     Customer findById(Long id);

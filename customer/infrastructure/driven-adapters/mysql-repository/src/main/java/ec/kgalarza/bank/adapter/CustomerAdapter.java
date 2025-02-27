@@ -1,7 +1,7 @@
 package ec.kgalarza.bank.adapter;
 
 import ec.kgalarza.bank.entity.Customer;
-import ec.kgalarza.bank.gateway.CustomerRepositoryGateway;
+import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 import ec.kgalarza.bank.mapper.CustomerRepoMapper;
 import ec.kgalarza.bank.repository.ICustomerRepository;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class CustomerAdapter implements CustomerRepositoryGateway {
+public class CustomerAdapter implements ICustomerRepositoryGateway {
 
     private final ICustomerRepository iCustomerRepository;
 
