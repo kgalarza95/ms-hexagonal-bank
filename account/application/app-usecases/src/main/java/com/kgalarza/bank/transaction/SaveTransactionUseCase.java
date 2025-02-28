@@ -3,6 +3,7 @@ package com.kgalarza.bank.transaction;
 import com.kgalarza.bank.account.FindAccountUseCase;
 import com.kgalarza.bank.account.FindByIdAccountUseCase;
 import com.kgalarza.bank.account.SaveAccountUseCase;
+import com.kgalarza.bank.account.UpdateAccountUseCase;
 import com.kgalarza.bank.entity.Account;
 import com.kgalarza.bank.entity.Log;
 import com.kgalarza.bank.entity.Transaction;
@@ -20,13 +21,13 @@ public class SaveTransactionUseCase {
 
     private final ITransactionRepositoryGateway transactionRepositoryGateway;
     private final FindByIdAccountUseCase  findByIdAccountUseCase;
-    private final SaveAccountUseCase saveAccountUseCases;
+    private final UpdateAccountUseCase updateAccountUseCase;
     private final ILogBusMessageGateway logBusMessageGateway;
 
-    public SaveTransactionUseCase(ITransactionRepositoryGateway transactionRepositoryGateway, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCases, ILogBusMessageGateway logBusMessageGateway) {
+    public SaveTransactionUseCase(ITransactionRepositoryGateway transactionRepositoryGateway, FindByIdAccountUseCase findByIdAccountUseCase, UpdateAccountUseCase updateAccountUseCase, ILogBusMessageGateway logBusMessageGateway) {
         this.transactionRepositoryGateway = transactionRepositoryGateway;
         this.findByIdAccountUseCase = findByIdAccountUseCase;
-        this.saveAccountUseCases = saveAccountUseCases;
+        this.updateAccountUseCase = updateAccountUseCase;
         this.logBusMessageGateway = logBusMessageGateway;
     }
 
@@ -48,7 +49,7 @@ public class SaveTransactionUseCase {
         Transaction savedTransaction = transactionRepositoryGateway.save(entidad);
 
         account.setOnlineBalance(finalBalance);
-        saveAccountUseCases.execute(account);
+        updateAccountUseCase.execute(account);
 
         logBusMessageGateway.sendMessage(new Log("Transaction created: "+entidad, LocalDateTime.now()));
         return savedTransaction;
