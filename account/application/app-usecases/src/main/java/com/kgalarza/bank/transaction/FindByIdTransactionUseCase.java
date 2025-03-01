@@ -1,7 +1,7 @@
 package com.kgalarza.bank.transaction;
 
 import com.kgalarza.bank.entity.Transaction;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
+import com.kgalarza.bank.exception.TransactionNotFoundException;
 import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 
 
@@ -16,7 +16,7 @@ public class FindByIdTransactionUseCase {
     public Transaction execute(Long id) {
         Transaction transaction = transactionRepositoryGateway.findById(id);
         if (transaction == null) {
-            throw new ResourceNotFoundException("Transaction with id " + id + " not found");
+            throw new TransactionNotFoundException("Transaction with id " + id + " not found");
         }
         return transaction;
     }

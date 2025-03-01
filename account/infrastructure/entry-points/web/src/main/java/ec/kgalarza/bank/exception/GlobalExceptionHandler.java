@@ -1,8 +1,9 @@
 package ec.kgalarza.bank.exception;
 
 import com.kgalarza.bank.exception.AccountAlreadyExistsException;
+import com.kgalarza.bank.exception.AccountNotFoundException;
 import com.kgalarza.bank.exception.GeneralAccountValidationException;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
+import com.kgalarza.bank.exception.TransactionNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +38,13 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException ex) {
+    @ExceptionHandler(TransactionNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(TransactionNotFoundException ex) {
+        return buildResponseEntity(HttpStatus.NOT_FOUND, ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleAccountNotFoundException(AccountNotFoundException ex) {
         return buildResponseEntity(HttpStatus.NOT_FOUND, ex.getMessage(), null);
     }
 

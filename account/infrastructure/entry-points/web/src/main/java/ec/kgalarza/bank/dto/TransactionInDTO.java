@@ -1,15 +1,17 @@
 package ec.kgalarza.bank.dto;
 
-import lombok.Data;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 
-@Data
-public class TransactionInDTO {
+public record TransactionInDTO(
+        @NotNull(message = "Transaction amount cannot be null")
+        BigDecimal transactionAmount,
 
-    private BigDecimal initialBalance;
-    private BigDecimal transactionAmount;
-    private BigDecimal availableBalance;
-    private String transactionDescription;
-    private Long accountId;
+        @NotNull(message = "Account ID cannot be null")
+        @Positive(message = "Account ID must be a positive number")
+        Long accountId) {
 }

@@ -1,7 +1,7 @@
 package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
+import com.kgalarza.bank.exception.AccountNotFoundException;
 import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 
 
@@ -20,7 +20,7 @@ public class FindAccountUseCase {
         List<Account> accounts = accountRepositoryGateway.findAll();
         return Optional.ofNullable(accounts)
                 .filter(list -> !list.isEmpty())
-                .orElseThrow(() -> new ResourceNotFoundException("No accounts found"));
+                .orElseThrow(() -> new AccountNotFoundException("No accounts found"));
     }
 
 

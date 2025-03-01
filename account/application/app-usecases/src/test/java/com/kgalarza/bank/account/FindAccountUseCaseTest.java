@@ -1,7 +1,7 @@
 package com.kgalarza.bank.account;
 
 import com.kgalarza.bank.entity.Account;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
+import com.kgalarza.bank.exception.AccountNotFoundException;
 import com.kgalarza.bank.gateway.IAccountRepositoryGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,10 +55,10 @@ public class FindAccountUseCaseTest {
     }
 
     @Test
-    void findById_ShouldThrowResourceNotFoundException_WhenAccountDoesNotExist() {
+    void findById_ShouldThrowAccountNotFoundException_WhenAccountDoesNotExist() {
         Mockito.when(IAccountRepositoryGateway.findById(99L)).thenReturn(null);
 
-        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+        Assertions.assertThrows(AccountNotFoundException.class, () -> {
             findByIdAccountUseCase.execute(99L);
         });
 

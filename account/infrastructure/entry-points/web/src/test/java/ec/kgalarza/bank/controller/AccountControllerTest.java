@@ -4,8 +4,10 @@ import ec.kgalarza.bank.dto.AccountInDTO;
 import ec.kgalarza.bank.dto.AccountOutDTO;
 import ec.kgalarza.bank.handler.AccountHandler;
 import org.junit.jupiter.api.BeforeEach;
+
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -30,21 +32,24 @@ public class AccountControllerTest {
 
     @BeforeEach
     void setUp() {
-        accountOutDTO = new AccountOutDTO();
-        accountOutDTO.setId(1L);
-        accountOutDTO.setAccountNumber("123456");
-        accountOutDTO.setAccountType("SAVINGS");
-        accountOutDTO.setOnlineBalance(BigDecimal.valueOf(1000.0));
-        accountOutDTO.setStatus(true);
-        accountOutDTO.setCustomerId(1L);
+        accountOutDTO = new AccountOutDTO(
+                1L,
+                "123456",
+                "SAVINGS",
+                BigDecimal.valueOf(1000.0),
+                true,
+                1L
+        );
 
-        accountInDTO = new AccountInDTO();
-        accountInDTO.setAccountNumber("123456");
-        accountInDTO.setAccountType("SAVINGS");
-        accountInDTO.setOnlineBalance(BigDecimal.valueOf(1000.0));
-        accountInDTO.setStatus(true);
-        accountInDTO.setCustomerId(1L);
+        accountInDTO = new AccountInDTO(
+                "123456",
+                "SAVINGS",
+                BigDecimal.valueOf(1000.0),
+                true,
+                1L
+        );
     }
+
 
     @Test
     void whenFindAll_thenReturnAccountList() {
@@ -56,7 +61,7 @@ public class AccountControllerTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(1, response.getBody().size());
-        assertEquals("123456", response.getBody().get(0).getAccountNumber());
+        assertEquals("123456", response.getBody().get(0).accountNumber());
 
         verify(accountHandler, times(1)).findAll();
     }
@@ -69,8 +74,8 @@ public class AccountControllerTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("123456", response.getBody().getAccountNumber());
-        assertEquals(1L, response.getBody().getId());
+        assertEquals("123456", response.getBody().accountNumber());
+        assertEquals(1L, response.getBody().id());
 
         verify(accountHandler, times(1)).findById(1L);
     }
@@ -95,7 +100,7 @@ public class AccountControllerTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("123456", response.getBody().getAccountNumber());
+        assertEquals("123456", response.getBody().accountNumber());
 
         verify(accountHandler, times(1)).save(any(AccountInDTO.class));
     }

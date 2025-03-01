@@ -3,6 +3,7 @@ package ec.kgalarza.bank.controller;
 import ec.kgalarza.bank.dto.AccountInDTO;
 import ec.kgalarza.bank.dto.AccountOutDTO;
 import ec.kgalarza.bank.handler.AccountHandler;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountOutDTO> save(@RequestBody AccountInDTO accountInDTO) {
+    public ResponseEntity<AccountOutDTO> save(@Valid @RequestBody AccountInDTO accountInDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(accountHandler.save(accountInDTO));
     }
 }

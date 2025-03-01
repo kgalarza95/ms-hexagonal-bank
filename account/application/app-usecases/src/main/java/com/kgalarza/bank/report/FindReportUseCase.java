@@ -1,7 +1,7 @@
 package com.kgalarza.bank.report;
 
 import com.kgalarza.bank.entity.AccountStatementReport;
-import com.kgalarza.bank.exception.ResourceNotFoundException;
+import com.kgalarza.bank.exception.TransactionNotFoundException;
 import com.kgalarza.bank.gateway.ITransactionRepositoryGateway;
 
 import java.time.LocalDateTime;
@@ -25,13 +25,20 @@ public class FindReportUseCase {
     }
 
     public List<AccountStatementReport> getAccountStatementReportByUser(LocalDateTime startDate, LocalDateTime endDate, Long userId) {
-        return getNonEmptyList(() -> transactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
+        return getNonEmptyList(transactionRepositoryGateway.getAccountStatementReportByUser(startDate, endDate, userId), "No account statements found for user with ID: " + userId);
     }
 
     private List<AccountStatementReport> getNonEmptyList(Supplier<List<AccountStatementReport>> supplier, String errorMessage) {
         List<AccountStatementReport> result = supplier.get();
         if (result.isEmpty()) {
-            throw new ResourceNotFoundException(errorMessage);
+            throw new TransactionNotFoundException(errorMessage);
+        }
+        return result;
+    }
+
+    private List<AccountStatementReport> getNonEmptyList(List<AccountStatementReport> result, String errorMessage) {
+        if (result.isEmpty()) {
+            throw new TransactionNotFoundException(errorMessage);
         }
         return result;
     }
