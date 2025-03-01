@@ -7,7 +7,7 @@ import com.kgalarza.bank.entity.Account;
 
 import ec.kgalarza.bank.dto.AccountInDTO;
 import ec.kgalarza.bank.dto.AccountOutDTO;
-import ec.kgalarza.bank.mapper.AccountMapper;
+import ec.kgalarza.bank.mapper.IAccountMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,26 +19,28 @@ public class AccountHandler {
     private final FindAccountUseCase findAccountUseCase;
     private final FindByIdAccountUseCase findByIdAccountUseCase;
     private final SaveAccountUseCase saveAccountUseCase;
+    private final IAccountMapper accountMapper;
 
-    public AccountHandler(FindAccountUseCase findAccountUseCase, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCase) {
+    public AccountHandler(FindAccountUseCase findAccountUseCase, FindByIdAccountUseCase findByIdAccountUseCase, SaveAccountUseCase saveAccountUseCase, IAccountMapper accountMapper) {
         this.findAccountUseCase = findAccountUseCase;
         this.findByIdAccountUseCase = findByIdAccountUseCase;
         this.saveAccountUseCase = saveAccountUseCase;
+        this.accountMapper = accountMapper;
     }
 
     public List<AccountOutDTO> findAll() {
         return findAccountUseCase.execute().stream()
-                .map(AccountMapper::toOutDTO)
+                .map(accountMapper::toOutDTO)
                 .collect(Collectors.toList());
     }
 
     public AccountOutDTO findById(Long id) {
         Account account = findByIdAccountUseCase.execute(id);
-        return account != null ? AccountMapper.toOutDTO(account) : null;
+        return account != null ? accountMapper.toOutDTO(account) : null;
     }
 
     public AccountOutDTO save(AccountInDTO accountInDTO) {
-        Account account = AccountMapper.toDomain(accountInDTO);
-        return AccountMapper.toOutDTO(saveAccountUseCase.execute(account));
+        Account account = accountMapper.toDomain(accountInDTO);
+        return accountMapper.toOutDTO(saveAccountUseCase.execute(account));
     }
 }

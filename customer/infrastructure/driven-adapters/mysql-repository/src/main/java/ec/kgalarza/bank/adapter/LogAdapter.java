@@ -2,7 +2,7 @@ package ec.kgalarza.bank.adapter;
 
 import ec.kgalarza.bank.entity.Log;
 import ec.kgalarza.bank.gateway.ILogRepositoryGateway;
-import ec.kgalarza.bank.mapper.LogRepoMapper;
+import ec.kgalarza.bank.mapper.ILogRepoMapper;
 import ec.kgalarza.bank.repository.ILogRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,17 +12,19 @@ import java.util.Optional;
 public class LogAdapter implements ILogRepositoryGateway {
 
     private final ILogRepository logRepository;
+    private final ILogRepoMapper logRepoMapper;
 
-    public LogAdapter(ILogRepository logRepository) {
+    public LogAdapter(ILogRepository logRepository, ILogRepoMapper logRepoMapper) {
         this.logRepository = logRepository;
+        this.logRepoMapper = logRepoMapper;
     }
 
     @Override
     public Log save(Log log) {
         return Optional.of(log)
-                .map(LogRepoMapper::toEntity)
+                .map(logRepoMapper::toEntity)
                 .map(logRepository::save)
-                .map(LogRepoMapper::toDomain)
+                .map(logRepoMapper::toDomain)
                 .orElseThrow(null);
     }
 }
