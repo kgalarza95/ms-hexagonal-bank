@@ -15,8 +15,4 @@ public class BCryptEncryptionAdapter implements IEncryptionService {
         return passwordEncoder.encode(password);
     }
 
-    @Override
-    public boolean matches(String rawPassword, String encryptedPassword) {
-        return passwordEncoder.matches(rawPassword, encryptedPassword);
-    }
 }
