@@ -39,7 +39,7 @@ public class CustomerControllerTest {
     void setUp() {
         customerOutDTO = new CustomerOutDTO();
         customerOutDTO.setCustomerId(1L);
-        customerOutDTO.setName("John Doe");
+        customerOutDTO.setName("Kevin Galarza");
         customerOutDTO.setGender("Male");
         customerOutDTO.setAge(30);
         customerOutDTO.setIdentification("123456789");
@@ -49,7 +49,7 @@ public class CustomerControllerTest {
         customerOutDTO.setStatus(true);
 
         customerInDTO = new CustomerInDTO();
-        customerInDTO.setName("John Doe");
+        customerInDTO.setName("Kevin Galarza");
         customerInDTO.setGender("Male");
         customerInDTO.setAge(30);
         customerInDTO.setIdentification("123456789");
@@ -60,7 +60,7 @@ public class CustomerControllerTest {
 
         customerWithIdInDTO = new CustomerWithIdInDTO();
         customerWithIdInDTO.setCustomerId(1L);
-        customerWithIdInDTO.setName("John Doe");
+        customerWithIdInDTO.setName("Kevin Galarza");
         customerWithIdInDTO.setGender("Male");
         customerWithIdInDTO.setAge(30);
         customerWithIdInDTO.setIdentification("123456789");
@@ -80,7 +80,7 @@ public class CustomerControllerTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(1, response.getBody().size());
-        assertEquals("John Doe", response.getBody().get(0).getName());
+        assertEquals("Kevin Galarza", response.getBody().get(0).getName());
 
         verify(customerHandler, times(1)).findAll();
     }
@@ -94,7 +94,7 @@ public class CustomerControllerTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(1L, response.getBody().getCustomerId());
-        assertEquals("John Doe", response.getBody().getName());
+        assertEquals("Kevin Galarza", response.getBody().getName());
 
         verify(customerHandler, times(1)).findById(1L);
     }
@@ -107,7 +107,7 @@ public class CustomerControllerTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("John Doe", response.getBody().getName());
+        assertEquals("Kevin Galarza", response.getBody().getName());
 
         verify(customerHandler, times(1)).save(any(CustomerInDTO.class));
     }
@@ -120,7 +120,7 @@ public class CustomerControllerTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("John Doe", response.getBody().getName());
+        assertEquals("Kevin Galarza", response.getBody().getName());
 
         verify(customerHandler, times(1)).update(any(CustomerWithIdInDTO.class));
     }

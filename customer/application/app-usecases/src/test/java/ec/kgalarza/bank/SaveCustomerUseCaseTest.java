@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -27,7 +28,7 @@ public class SaveCustomerUseCaseTest {
 
     @Test
     void execute_ShouldReturnSavedCustomer() {
-        Customer customerToSave = new Customer("John Doe", "Male", 30, "123456789", "123 Street", "555-1234", 1L, "password1", true);
+        Customer customerToSave = new Customer("Kevin Galarza", "Male", 30, "123456789", "123 Street", "555-1234", 1L, "password1", true);
         Mockito.when(ICustomerRepositoryGateway.save(customerToSave)).thenReturn(customerToSave);
 
         Customer result = saveCustomerUseCase.execute(customerToSave);

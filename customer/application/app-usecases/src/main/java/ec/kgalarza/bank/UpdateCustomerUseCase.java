@@ -1,7 +1,7 @@
 package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
-import ec.kgalarza.bank.exception.ResourceNotFoundException;
+import ec.kgalarza.bank.exception.CustomerNotFoundException;
 import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 
 public class UpdateCustomerUseCase {
@@ -15,7 +15,7 @@ public class UpdateCustomerUseCase {
     public Customer execute(Customer entidad) {
         Customer customerExists = customerRepositoryGateway.findById(entidad.getCustomerId());
         if (customerExists == null) {
-            throw new ResourceNotFoundException("Customer with id " + entidad.getCustomerId() + " not found");
+            throw new CustomerNotFoundException("Customer with id " + entidad.getCustomerId() + " not found");
         }
         return customerRepositoryGateway.save(entidad);
     }

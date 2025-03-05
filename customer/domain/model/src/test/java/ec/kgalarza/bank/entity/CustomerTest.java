@@ -25,7 +25,7 @@ public class CustomerTest {
         String gender = "Male";
         Integer age = 30;
         String identification = "123456789";
-        String address = "123 Main St";
+        String address = "123 Sergio";
         String phone = "987654321";
         Long customerId = 12345L;
         String password = "password123";

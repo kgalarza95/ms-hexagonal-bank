@@ -1,7 +1,7 @@
 package ec.kgalarza.bank;
 
 import ec.kgalarza.bank.entity.Customer;
-import ec.kgalarza.bank.exception.ResourceNotFoundException;
+import ec.kgalarza.bank.exception.CustomerNotFoundException;
 import ec.kgalarza.bank.gateway.ICustomerRepositoryGateway;
 
 public class FindByIdCustomerUseCase {
@@ -15,7 +15,7 @@ public class FindByIdCustomerUseCase {
     public Customer execute(Long id) {
         Customer customer = customerRepositoryGateway.findById(id);
         if (customer == null) {
-            throw new ResourceNotFoundException("Customer with id " + id + " not found");
+            throw new CustomerNotFoundException("Customer with id " + id + " not found");
         }
         return customer;
     }
